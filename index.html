@@ -344,7 +344,7 @@ document.getElementById('the100Form').addEventListener('submit', function(e){
   }).then(async (response) => {
     const result = await response.json();
     if (result.success) {
-      status.textContent = "You're in. Check your WhatsApp for the group invite soon.";
+      status.innerHTML = "You're in. <a href=\"https://chat.whatsapp.com/DSsXpzxsPfo6uoEtGAeXSa?mode=gi_t\" target=\"_blank\" style=\"color:var(--olive-dark);\">Tap here to join the WhatsApp group</a>.";
       form.reset();
     } else {
       status.textContent = "Something went wrong, please try again.";

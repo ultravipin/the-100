@@ -1,359 +1,391 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THE 100 — Find Your Ultra</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --olive:#6C9429;
-    --olive-dark:#516f1f;
-    --cream:#F4F1E8;
-    --ink:#121212;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--cream);
-    color:var(--ink);
-    font-family:Calibri, "Segoe UI", Roboto, Arial, sans-serif;
-    font-size:18px;
-    line-height:1.6;
-  }
-  h1,h2,h3{
-    font-family:Cambria, Georgia, "Times New Roman", serif;
-    font-weight:700;
-    margin:0 0 0.4em 0;
-  }
-  .display{
-    font-family:'Anton', Cambria, sans-serif;
-    text-transform:none;
-    letter-spacing:0.5px;
-  }
-  a{color:var(--olive-dark);}
-  .wrap{
-    max-width:960px;
-    margin:0 auto;
-    padding:0 24px;
-  }
-  .narrow{
-    max-width:640px;
-  }
-
-  /* header */
-  header{
-    padding:28px 0;
-    border-bottom:2px solid var(--ink);
-  }
-  header .wrap{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
-  .wordmark{
-    font-family:Cambria, Georgia, serif;
-    font-weight:700;
-    font-size:20px;
-    letter-spacing:0.3px;
-  }
-  .wordmark span{color:var(--olive-dark);}
-
-  /* hero */
-  .hero{
-    padding:64px 0 56px 0;
-  }
-  .hero .display{
-    font-size:clamp(56px, 12vw, 128px);
-    line-height:0.95;
-    margin-bottom:18px;
-  }
-  .hero .sub{
-    font-size:20px;
-    max-width:520px;
-    margin-bottom:28px;
-  }
-  .dates-chip{
-    display:inline-block;
-    border:2px solid var(--ink);
-    background:#fff;
-    padding:8px 16px;
-    font-family:Cambria, Georgia, serif;
-    font-weight:700;
-    font-size:15px;
-    box-shadow:5px 5px 0 var(--ink);
-    margin-bottom:32px;
-  }
-  .btn{
-    display:inline-block;
-    background:var(--olive);
-    color:#fff;
-    border:2px solid var(--ink);
-    padding:14px 28px;
-    font-family:Cambria, Georgia, serif;
-    font-weight:700;
-    font-size:18px;
-    text-decoration:none;
-    box-shadow:6px 6px 0 var(--ink);
-    transition:transform 0.12s ease, box-shadow 0.12s ease;
-    cursor:pointer;
-  }
-  .btn:hover{
-    transform:translate(3px, 3px);
-    box-shadow:3px 3px 0 var(--ink);
-  }
-
-  /* story */
-  .story{
-    padding:48px 0;
-    border-top:2px solid var(--ink);
-  }
-  .story p{margin:0 0 1.1em 0;}
-  .story p:last-child{margin-bottom:0;}
-
-  /* pillars */
-  .pillars{
-    padding:48px 0 56px 0;
-    border-top:2px solid var(--ink);
-  }
-  .pillar-grid{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:20px;
-    margin-top:32px;
-  }
-  @media (max-width:820px){
-    .pillar-grid{grid-template-columns:repeat(2, 1fr);}
-  }
-  @media (max-width:520px){
-    .pillar-grid{grid-template-columns:1fr;}
-  }
-  .pillar{
-    background:#fff;
-    border:2px solid var(--ink);
-    box-shadow:6px 6px 0 var(--ink);
-    padding:22px 18px;
-  }
-  .pillar .glyph{
-    font-family:'Anton', sans-serif;
-    font-size:34px;
-    color:var(--olive-dark);
-    line-height:1;
-    margin-bottom:10px;
-  }
-  .pillar h3{
-    font-size:19px;
-    margin-bottom:8px;
-  }
-  .pillar p{
-    font-size:15.5px;
-    margin:0;
-  }
-
-  /* offer */
-  .offer{
-    padding:48px 0 56px 0;
-    border-top:2px solid var(--ink);
-  }
-  .offer ul{
-    padding-left:1.2em;
-    margin:20px 0 0 0;
-  }
-  .offer li{margin-bottom:10px;}
-  .offer li:last-child{margin-bottom:0;}
-
-  /* form */
-  .join{
-    padding:48px 0 64px 0;
-    border-top:2px solid var(--ink);
-    background:#fff;
-  }
-  .join h2{margin-bottom:6px;}
-  .join .sub{margin-bottom:28px;}
-  form{max-width:520px;}
-  .field{margin-bottom:18px;}
-  label{
-    display:block;
-    font-weight:700;
-    font-family:Cambria, Georgia, serif;
-    margin-bottom:6px;
-    font-size:15.5px;
-  }
-  input[type=text], input[type=email], input[type=tel], select, textarea{
-    width:100%;
-    padding:11px 12px;
-    border:2px solid var(--ink);
-    background:var(--cream);
-    font-family:Calibri, "Segoe UI", Roboto, Arial, sans-serif;
-    font-size:16px;
-  }
-  textarea{resize:vertical; min-height:70px;}
-  .hint{
-    font-size:13.5px;
-    color:#444;
-    margin-top:5px;
-  }
-  .submit-row{margin-top:26px;}
-  #formStatus{
-    margin-top:16px;
-    font-weight:700;
-  }
-
-  footer{
-    padding:32px 0;
-    border-top:2px solid var(--ink);
-    font-size:14.5px;
-    color:#444;
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-dc6d3055-886b-4d52-8004-31833c810865/styles.css">
+<script src="_ds/organic-dc6d3055-886b-4d52-8004-31833c810865/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..700&family=Figtree:wght@300..700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  *{ box-sizing: border-box; }
+  body { margin: 0; background: #F4F1E8; color: #121212; font-family: 'Figtree', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #4E6C1D; text-decoration: none; }
+  a:hover { color: #121212; }
+  ::selection { background: rgba(108,148,41,.24); }
+  input, textarea, button { font-family: inherit; }
+  input:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid #6C9429; outline-offset: 3px; }
+</style>
+</helmet>
 
-<header>
-  <div class="wrap">
-    <div class="wordmark">Find Your <span>Ultra</span></div>
-  </div>
-</header>
+<div style="background:#F4F1E8;color:#121212;overflow-x:hidden">
 
-<section class="hero">
-  <div class="wrap">
-    <div class="display">THE 100</div>
-    <p class="sub">One promise a day, for a hundred days. Move, reset, eat on purpose, and give one thing up. Nothing else.</p>
-    <div><span class="dates-chip">23 Sept &mdash; 31 Dec 2026</span></div>
-    <br>
-    <a href="#join" class="btn">Join THE 100</a>
-  </div>
-</section>
+  <header style="position:sticky;top:0;z-index:40;background:rgba(244,241,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(18,18,18,.14)">
+    <div style="max-width:1360px;margin:0 auto;padding:12px clamp(18px,5vw,72px);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <a href="#top" style="display:block"><img src="logo-fyu.png" alt="Find Your Ultra, hosted by Vipin Sharma" style="height:56px;width:auto;display:block" /></a>
+      <nav style="display:flex;align-items:center;gap:clamp(14px,2.2vw,30px);flex-wrap:wrap">
+        <a href="#the-last-100" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#121212" style-hover="color:#6C9429">The Last 100</a>
+        <a href="#conversations" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#121212" style-hover="color:#6C9429">Conversations</a>
+        <a href="#how-it-works" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:#121212" style-hover="color:#6C9429">How it works</a>
+        <a href="#enrol" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;background:#121212;color:#F4F1E8;padding:11px 22px;border-radius:999px" style-hover="background:#6C9429;color:#121212">Take your place</a>
+      </nav>
+    </div>
+  </header>
 
-<section class="story">
-  <div class="wrap narrow">
-    <p>I'm a certified nutrition coach. I know what a good diet looks like. I know how much protein I need, why sleep matters, why consistency beats intensity. None of that has stopped me from carrying more weight than I want to.</p>
-    <p>So starting 23rd September, I'm giving myself a hundred days. One clear promise a day. Not a diet plan, not a before-and-after photo, just showing up. I'm doing it in public because that's the only way I've found that actually works for me.</p>
-    <p>If there's something you've been meaning to change, come do the hundred days with me.</p>
-  </div>
-</section>
+  <section id="top" style="max-width:1360px;margin:0 auto;padding:clamp(30px,5vh,60px) clamp(18px,5vw,72px) clamp(16px,3vh,30px)">
+    <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#4E6C1D;font-weight:600;padding-bottom:12px;border-bottom:1px solid rgba(18,18,18,.16);margin-bottom:20px">The show</div>
+    <p style="margin:0;font-family:'Bodoni Moda',serif;font-size:clamp(21px,2.4vw,36px);line-height:1.25;max-width:32ch;text-wrap:pretty">Find Your Ultra is a podcast about how ordinary people keep going, long after the excitement wears off.</p>
+  </section>
 
-<section class="pillars">
-  <div class="wrap">
-    <h2>Four things, every day</h2>
-    <div class="pillar-grid">
-      <div class="pillar">
-        <div class="glyph">Move</div>
-        <h3>20 minutes of activity</h3>
-        <p>Walk, run, cycle, swim, whatever moves you. Tracked on Strava.</p>
-      </div>
-      <div class="pillar">
-        <div class="glyph">Reset</div>
-        <h3>5 minutes of meditation</h3>
-        <p>Any app, any style. Five minutes of quiet, no more required.</p>
-      </div>
-      <div class="pillar">
-        <div class="glyph">Nourish</div>
-        <h3>One meal, chosen on purpose</h3>
-        <p>One meal a day that you actually decided on, not just whatever showed up.</p>
-      </div>
-      <div class="pillar">
-        <div class="glyph">Drop</div>
-        <h3>One thing you give up</h3>
-        <p>Yours to choose. Smoking, sugar, late nights, whatever it is for you.</p>
+  <section style="max-width:1360px;margin:0 auto;padding:clamp(26px,4vh,52px) clamp(18px,5vw,72px);border-top:1px solid rgba(18,18,18,.16)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(26px,4vw,72px);align-items:start">
+      <div style="height:clamp(260px,38vh,420px)"><image-slot id="fyu-vipin-intro" shape="rect" fit="cover" placeholder="PHOTO: Vipin, portrait or mid-run"></image-slot></div>
+      <div>
+        <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#4E6C1D;font-weight:600;padding-bottom:12px;border-bottom:1px solid rgba(18,18,18,.16);margin-bottom:20px">The host</div>
+        <p style="margin:0 0 18px;font-size:clamp(17px,1.35vw,20px);line-height:1.6;max-width:46ch;text-wrap:pretty">I'm Vipin. I've spent 110+ episodes asking people who do genuinely hard things how they keep showing up.</p>
+        <p style="margin:0 0 18px;font-size:clamp(17px,1.35vw,20px);line-height:1.6;max-width:46ch;text-wrap:pretty">None of them talked about talent. They talked about small promises, kept on ordinary days, for much longer than felt interesting.</p>
+        <p style="margin:0;font-size:clamp(17px,1.35vw,20px);line-height:1.6;max-width:46ch;text-wrap:pretty">So I stopped only interviewing it. <em style="font-family:'Bodoni Moda',serif;font-style:italic">The Last 100</em> is me doing it in the open, for the final hundred days of the year, and asking you to do it alongside me.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="offer">
-  <div class="wrap narrow">
-    <h2>Along the way</h2>
-    <ul>
-      <li>A running plan matched to where you're starting, first 5K, first 10K, half marathon, or a comeback plan if you're returning after time off</li>
-      <li>A WhatsApp group that runs the full hundred days with you</li>
-      <li>Live check-ins with me and a guest at day 25, 50, 75, and 100</li>
-      <li>A Find Your Ultra certificate if you cross the finish line, and a shot at FYU merch through a random draw among everyone who does</li>
-    </ul>
-  </div>
-</section>
+  <section id="the-last-100" style="padding:clamp(20px,4vh,44px) 0 clamp(40px,7vh,96px)">
+    <div style="max-width:1360px;margin:0 auto;padding:0 clamp(18px,5vw,72px)">
+      <div style="display:flex;flex-wrap:wrap;gap:10px 28px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:clamp(10px,2vh,20px)">
+        <span style="color:#4E6C1D">#TheLast100</span>
+        <span style="color:rgba(18,18,18,.72)">23 September to 31 December 2026</span>
+        <span style="color:rgba(18,18,18,.72)">100 days, exactly</span>
+      </div>
+      <div style="position:relative">
+        <h1 style="position:relative;z-index:2;font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(60px,14.6vw,224px);line-height:.85;letter-spacing:-.018em;margin:0 0 -.08em">THE LAST <span style="color:#6C9429">100</span></h1>
+        <div style="position:relative;z-index:1;height:clamp(240px,44vh,470px)"><image-slot id="fyu-hero-band" shape="rect" fit="cover" placeholder="HERO PHOTO: wide, dawn road or start line"></image-slot></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(22px,4vw,64px);align-items:flex-end;justify-content:space-between;border-top:1px solid rgba(18,18,18,.16);margin-top:clamp(18px,3vh,34px);padding-top:clamp(20px,3vh,32px)">
+        <div>
+          <p style="margin:0 0 16px;font-family:'Bodoni Moda',serif;font-size:clamp(26px,3.6vw,60px);line-height:1.1;max-width:26ch;letter-spacing:-.01em;text-wrap:pretty">2026 isn't over. You have 100 days to change how it ends.</p>
+          <p style="margin:0;font-size:clamp(16px,1.3vw,19px);line-height:1.55;max-width:40ch;color:rgba(18,18,18,.8)">23 September to 31 December. One promise a day. Nothing else.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+          <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#4E6C1D;font-weight:600">Day one: 23 September 2026</div>
+          <a href="#enrol" style="display:inline-block;background:#6C9429;color:#121212;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;padding:17px 38px;border-radius:999px" style-hover="background:#121212;color:#F4F1E8">Take your place</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="join" id="join">
-  <div class="wrap">
-    <h2>Join THE 100</h2>
-    <p class="sub narrow">Fill this in so I know where you're starting from, that way you get the right running plan instead of a generic one. Your email and WhatsApp number are just how the plan and check-in invites reach you.</p>
+  <section id="conversations" style="max-width:1360px;margin:0 auto;padding:clamp(44px,8vh,110px) clamp(18px,5vw,72px);border-top:1px solid rgba(18,18,18,.16)">
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(28px,5vh,58px)">
+      <div>
+        <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#4E6C1D;font-weight:600;margin-bottom:16px">The conversations</div>
+        <h2 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(38px,6.4vw,96px);line-height:.92;letter-spacing:-.015em">Where this<br>came from</h2>
+      </div>
+      <p style="margin:0;font-size:15px;line-height:1.6;max-width:32ch;color:rgba(18,18,18,.78)">A hundred days is easier to believe in after you've heard someone describe doing it. Start with one episode.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:clamp(20px,2.4vw,36px)">
+      <sc-for list="{{ guests }}" as="g" hint-placeholder-count="16">
+        <div>
+          <div style="aspect-ratio:4/5;margin-bottom:14px"><image-slot id="{{ g.slot }}" shape="rect" fit="cover" placeholder="Episode thumbnail"></image-slot></div>
+          <div style="display:flex;justify-content:space-between;gap:10px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#4E6C1D;font-weight:600;padding-bottom:8px;border-bottom:1px solid rgba(18,18,18,.16)"><span style="white-space:nowrap">Ep {{ g.num }}</span><span style="color:rgba(18,18,18,.72);white-space:nowrap">[ guest ]</span></div>
+          <div style="font-family:'Bodoni Moda',serif;font-size:21px;line-height:1.2;margin:12px 0 4px">Guest name</div>
+          <div style="font-size:13px;line-height:1.5;color:rgba(18,18,18,.72);margin-bottom:12px">Episode title goes here</div>
+          <div style="display:flex;gap:16px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600">
+            <a href="{{ g.yt }}" style="color:#121212;border-bottom:1px solid rgba(18,18,18,.3);padding-bottom:2px" style-hover="color:#6C9429;border-bottom:1px solid #6C9429">YouTube</a>
+            <a href="{{ g.sp }}" style="color:#121212;border-bottom:1px solid rgba(18,18,18,.3);padding-bottom:2px" style-hover="color:#6C9429;border-bottom:1px solid #6C9429">Spotify</a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:clamp(30px,5vh,56px)">
+      <a href="https://www.youtube.com/@FindYourUltra" target="_blank" rel="noopener" style="display:inline-block;background:#121212;color:#F4F1E8;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:16px 32px;border-radius:999px" style-hover="background:#6C9429;color:#121212">Watch all 110+ episodes on YouTube</a>
+      <a href="{{ spotifyUrl }}" target="_blank" rel="noopener" style="display:inline-block;border:1px solid rgba(18,18,18,.3);color:#121212;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:16px 32px;border-radius:999px" style-hover="border:1px solid #6C9429;color:#6C9429">Listen on Spotify</a>
+    </div>
+  </section>
 
-    <form id="the100Form">
-      <input type="hidden" name="access_key" value="870cb139-8593-4bd4-934e-5b8db3bce18c">
-      <input type="hidden" name="subject" value="New THE 100 sign-up">
+  <section id="how-it-works" style="max-width:1360px;margin:0 auto;padding:clamp(44px,8vh,110px) clamp(18px,5vw,72px);border-top:1px solid rgba(18,18,18,.16)">
+    <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#4E6C1D;font-weight:600;margin-bottom:16px">How it works</div>
+    <h2 style="margin:0 0 clamp(34px,6vh,72px);font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(38px,6.6vw,108px);line-height:.9;letter-spacing:-.018em">Four things,<br>every single day</h2>
 
-      <div class="field">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;margin-bottom:clamp(16px,2.6vh,26px)">
+      <span style="font-family:'Bodoni Moda',serif;font-size:clamp(22px,2.4vw,34px);color:#6C9429">01</span>
+      <h3 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(26px,3vw,46px);line-height:1;letter-spacing:-.01em">What you do</h3>
+      <span style="font-size:15px;color:rgba(18,18,18,.78)">Four things, every day. That is the whole challenge.</span>
+    </div>
+    <div style="border-top:1px solid rgba(18,18,18,.16)">
+      <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(12px,3.5vw,56px);align-items:baseline;padding:clamp(20px,3vh,34px) 0;border-bottom:1px solid rgba(18,18,18,.16)">
+          <div style="flex:0 0 auto;min-width:180px;font-family:'Bodoni Moda',serif;font-size:clamp(30px,4vw,58px);line-height:1;letter-spacing:-.01em">{{ p.name }}</div>
+          <p style="flex:1 1 320px;margin:0;font-size:clamp(16px,1.25vw,19px);line-height:1.6;max-width:52ch;color:rgba(18,18,18,.84);text-wrap:pretty">{{ p.copy }}</p>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:clamp(18px,3vw,44px);margin-top:clamp(28px,4vh,48px)">
+      <div>
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(18,18,18,.72);font-weight:600;margin-bottom:10px">Day one</div>
+        <div style="font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.4vw,36px);line-height:1.1">23 September 2026</div>
+      </div>
+      <div>
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(18,18,18,.72);font-weight:600;margin-bottom:10px">Day one hundred</div>
+        <div style="font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.4vw,36px);line-height:1.1">31 December 2026</div>
+      </div>
+      <div>
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(18,18,18,.72);font-weight:600;margin-bottom:10px">Daily check-in</div>
+        <div style="font-family:'Bodoni Moda',serif;font-size:clamp(24px,2.4vw,36px);line-height:1.1">One line, WhatsApp</div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;margin:clamp(44px,7vh,92px) 0 clamp(20px,3vh,30px);padding-top:clamp(24px,4vh,44px);border-top:1px solid rgba(18,18,18,.16)">
+      <span style="font-family:'Bodoni Moda',serif;font-size:clamp(22px,2.4vw,34px);color:#6C9429">02</span>
+      <h3 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(26px,3vw,46px);line-height:1;letter-spacing:-.01em">What you get</h3>
+    </div>
+    <p style="margin:0 0 clamp(30px,5vh,56px);font-family:'Bodoni Moda',serif;font-size:clamp(24px,3.2vw,52px);line-height:1.16;max-width:30ch;letter-spacing:-.01em;text-wrap:pretty">What you get at the end is not a medal. It is a version of you that keeps promises to itself. That is the point, and it is the part nobody can hand you.</p>
+    <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(18,18,18,.72);font-weight:600;margin-bottom:20px">Free, and made for this group only</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(20px,3vw,40px)">
+      <sc-for list="{{ perks }}" as="k" hint-placeholder-count="5">
+        <div style="border-top:1px solid rgba(18,18,18,.16);padding-top:16px">
+          <div style="font-family:'Bodoni Moda',serif;font-size:22px;line-height:1.25;margin-bottom:8px">{{ k.name }}</div>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:rgba(18,18,18,.78);max-width:34ch;text-wrap:pretty">{{ k.copy }}</p>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin:clamp(28px,4vh,44px) 0 0;font-size:15px;line-height:1.6;color:rgba(18,18,18,.72);max-width:44ch">There is something waiting for the people who finish. More on that closer to the end.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;margin:clamp(44px,7vh,92px) 0 clamp(20px,3vh,32px);padding-top:clamp(24px,4vh,44px);border-top:1px solid rgba(18,18,18,.16)">
+      <span style="font-family:'Bodoni Moda',serif;font-size:clamp(22px,2.4vw,34px);color:#6C9429">03</span>
+      <h3 style="margin:0;font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(26px,3vw,46px);line-height:1;letter-spacing:-.01em">How to join</h3>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(20px,3vw,40px)">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <div>
+          <div style="width:44px;height:44px;border-radius:999px;background:#6C9429;color:#121212;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;font-size:20px;margin-bottom:14px">{{ s.num }}</div>
+          <p style="margin:0;font-size:clamp(16px,1.25vw,19px);line-height:1.55;max-width:30ch;text-wrap:pretty">{{ s.copy }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="faq" style="max-width:1360px;margin:0 auto;padding:clamp(44px,8vh,110px) clamp(18px,5vw,72px);border-top:1px solid rgba(18,18,18,.16)">
+    <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#4E6C1D;font-weight:600;margin-bottom:16px">Before you sign up</div>
+    <h2 style="margin:0 0 clamp(30px,5vh,60px);font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(38px,6.4vw,100px);line-height:.9;letter-spacing:-.018em">Questions,<br>answered plainly</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,3.4vw,56px)">
+      <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="7">
+        <div style="border-top:1px solid rgba(18,18,18,.16);padding-top:18px">
+          <div style="font-family:'Bodoni Moda',serif;font-size:clamp(20px,1.8vw,26px);line-height:1.25;margin-bottom:12px;text-wrap:pretty">{{ q.q }}</div>
+          <p style="margin:0;font-size:16px;line-height:1.62;color:rgba(18,18,18,.84);max-width:46ch;text-wrap:pretty">{{ q.a }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="enrol" style="background:#121212;color:#F4F1E8">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(48px,9vh,120px) clamp(18px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(34px,5vw,90px)">
+      <div>
+        <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#9BBF5C;font-weight:600;margin-bottom:18px">Enrolment</div>
+        <h2 style="margin:0 0 22px;font-family:'Bodoni Moda',serif;font-weight:500;font-size:clamp(44px,7.2vw,116px);line-height:.86;letter-spacing:-.02em">Take your<br>place</h2>
+        <p style="margin:0 0 28px;font-size:clamp(16px,1.3vw,19px);line-height:1.6;max-width:36ch;color:rgba(244,241,232,.82);text-wrap:pretty">It is free. Fill this in, and the WhatsApp and Strava links appear the moment you submit. Then you show up on 23 September.</p>
+        <div style="height:clamp(190px,28vh,320px);max-width:440px"><image-slot id="fyu-enrol-photo" shape="rect" fit="cover" placeholder="PHOTO: group run or finish line"></image-slot></div>
       </div>
 
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+      <div>
+        <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onSubmit }}" action="https://api.web3forms.com/submit" method="POST" style="display:flex;flex-direction:column;gap:clamp(20px,3vh,30px)">
+            <input type="hidden" name="access_key" value="870cb139-8593-4bd4-934e-5b8db3bce18c" />
+            <input type="hidden" name="subject" value="The Last 100: new enrolment" />
+            <label style="display:block">
+              <span style="display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.72);font-weight:600;margin-bottom:8px">Name</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Your full name" value="{{ f.name }}" onChange="{{ onName }}" style="width:100%;background:transparent;border:0;border-bottom:1px solid rgba(244,241,232,.34);color:#F4F1E8;font-size:17px;padding:12px 2px;outline:none" style-focus="border-bottom:1px solid #9BBF5C" />
+            </label>
+            <label style="display:block">
+              <span style="display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.72);font-weight:600;margin-bottom:8px">Email</span>
+              <input type="email" name="email" autocomplete="email" placeholder="you@email.com" value="{{ f.email }}" onChange="{{ onEmail }}" style="width:100%;background:transparent;border:0;border-bottom:1px solid rgba(244,241,232,.34);color:#F4F1E8;font-size:17px;padding:12px 2px;outline:none" style-focus="border-bottom:1px solid #9BBF5C" />
+            </label>
+            <label style="display:block">
+              <span style="display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.72);font-weight:600;margin-bottom:8px">WhatsApp number</span>
+              <input type="tel" name="phone" autocomplete="tel" placeholder="+91 00000 00000" value="{{ f.phone }}" onChange="{{ onPhone }}" style="width:100%;background:transparent;border:0;border-bottom:1px solid rgba(244,241,232,.34);color:#F4F1E8;font-size:17px;padding:12px 2px;outline:none" style-focus="border-bottom:1px solid #9BBF5C" />
+            </label>
+            <fieldset style="border:0;padding:0;margin:0">
+              <legend style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.72);font-weight:600;margin-bottom:14px;padding:0">Running experience</legend>
+              <div style="display:flex;flex-wrap:wrap;gap:10px">
+                <sc-for list="{{ levels }}" as="l" hint-placeholder-count="4">
+                  <label style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(244,241,232,.34);border-radius:999px;padding:11px 20px;font-size:13px;cursor:pointer" style-hover="border:1px solid #9BBF5C;color:#9BBF5C">
+                    <input type="radio" name="level" checked="{{ l.checked }}" onChange="{{ l.pick }}" style="accent-color:#6C9429;margin:0" />
+                    {{ l.label }}
+                  </label>
+                </sc-for>
+              </div>
+            </fieldset>
+            <label style="display:block">
+              <span style="display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.72);font-weight:600;margin-bottom:8px">What are you giving up? <span style="letter-spacing:.1em;text-transform:none;color:rgba(244,241,232,.72)">(optional)</span></span>
+              <textarea name="giving" rows="2" placeholder="Sugar, the snooze button, the scroll" value="{{ f.giving }}" onChange="{{ onGiving }}" style="width:100%;background:transparent;border:0;border-bottom:1px solid rgba(244,241,232,.34);color:#F4F1E8;font-size:17px;padding:12px 2px;outline:none;resize:vertical" style-focus="border-bottom:1px solid #9BBF5C"></textarea>
+            </label>
+            <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+              <div role="alert" style="font-size:14px;color:#E9B27A">{{ error }}</div>
+            </sc-if>
+            <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center">
+              <button type="submit" disabled="{{ sending }}" style="background:#6C9429;color:#121212;border:0;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;padding:18px 40px;border-radius:999px;cursor:pointer" style-hover="background:#F4F1E8;color:#121212">Count me in</button>
+              <span style="font-size:12px;color:rgba(244,241,232,.72);max-width:26ch;line-height:1.5">We'll only message you about The Last 100.</span>
+            </div>
+          </form>
+        </sc-if>
+        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px solid rgba(155,191,92,.5);border-radius:24px;padding:clamp(28px,4vw,48px)">
+            <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#9BBF5C;font-weight:600;margin-bottom:18px">You're in</div>
+            <div style="font-family:'Bodoni Moda',serif;font-size:clamp(28px,3.4vw,48px);line-height:1.08;margin-bottom:20px">Day one is 23 September. Two links to join, right now.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:22px">
+              <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" style="display:inline-block;background:#6C9429;color:#121212;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:16px 30px;border-radius:999px" style-hover="background:#F4F1E8;color:#121212">Join the WhatsApp group</a>
+              <a href="{{ stravaUrl }}" target="_blank" rel="noopener" style="display:inline-block;border:1px solid rgba(244,241,232,.4);color:#F4F1E8;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:16px 30px;border-radius:999px" style-hover="border:1px solid #9BBF5C;color:#9BBF5C">Join the Strava group</a>
+            </div>
+            <p style="margin:0;font-size:16px;line-height:1.6;color:rgba(244,241,232,.82);max-width:40ch">Do both now, while you're here. Then nothing else until the 23rd, when you post your first line in the group. #TheLast100</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#F4F1E8;color:#121212">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(44px,8vh,100px) clamp(18px,5vw,72px)">
+      <img src="logo-fyu.png" alt="Find Your Ultra, hosted by Vipin Sharma" style="display:block;width:min(100%,760px);height:auto" />
+
+      <div style="margin-top:clamp(34px,5vh,68px);padding-top:clamp(22px,3vh,36px);border-top:1px solid rgba(18,18,18,.16)">
+        <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(18,18,18,.72);font-weight:600;margin-bottom:14px">The record so far</div>
+        <p style="margin:0;font-family:'Bodoni Moda',serif;font-size:clamp(22px,3vw,44px);line-height:1.2;max-width:30ch;text-wrap:pretty">110+ episodes, top 10% of video podcasts on Spotify globally, retention beating 94% of shows</p>
       </div>
 
-      <div class="field">
-        <label for="whatsapp">WhatsApp number</label>
-        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+91 " required>
-        <div class="hint">Include your country code, this is how you'll be added to the group.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(24px,4vw,60px);margin-top:clamp(34px,5vh,68px);padding-top:clamp(22px,3vh,36px);border-top:1px solid rgba(18,18,18,.16)">
+        <div>
+          <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(18,18,18,.72);font-weight:600;margin-bottom:16px">Listen &amp; follow</div>
+          <div style="display:flex;flex-wrap:wrap;gap:14px">
+            <a href="https://www.youtube.com/@FindYourUltra" target="_blank" rel="noopener" style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#121212;border:1px solid rgba(18,18,18,.25);border-radius:999px;padding:11px 20px" style-hover="border:1px solid #6C9429;color:#6C9429">YouTube</a>
+            <a href="{{ spotifyUrl }}" target="_blank" rel="noopener" style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#121212;border:1px solid rgba(18,18,18,.25);border-radius:999px;padding:11px 20px" style-hover="border:1px solid #6C9429;color:#6C9429">Spotify</a>
+            <a href="https://www.instagram.com/find_your_ultra" target="_blank" rel="noopener" style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#121212;border:1px solid rgba(18,18,18,.25);border-radius:999px;padding:11px 20px" style-hover="border:1px solid #6C9429;color:#6C9429">Instagram</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(18,18,18,.72);font-weight:600;margin-bottom:16px">Brands &amp; partners</div>
+          <p style="margin:0 0 14px;font-family:'Bodoni Moda',serif;font-size:clamp(20px,2.2vw,30px);line-height:1.25;max-width:28ch;text-wrap:pretty">If your brand belongs in a hundred days of kept promises, let's talk.</p>
+          <a href="mailto:findyourultra@gmail.com" style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#4E6C1D;border-bottom:1px solid rgba(108,148,41,.5);padding-bottom:3px" style-hover="color:#121212;border-bottom:1px solid #121212">findyourultra@gmail.com</a>
+        </div>
       </div>
 
-      <div class="field">
-        <label for="level">Where are you starting from</label>
-        <select id="level" name="running_level" required>
-          <option value="">Choose one</option>
-          <option value="Never run before">Never run before</option>
-          <option value="Getting back into it after time off">Getting back into it after time off</option>
-          <option value="I run regularly">I run regularly</option>
-          <option value="I've done half marathons or longer">I've done half marathons or longer</option>
-        </select>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;margin-top:clamp(34px,5vh,64px);padding-top:20px;border-top:1px solid rgba(18,18,18,.16);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(18,18,18,.72)">
+        <span>Find Your Ultra &copy; 2026</span>
+        <span>The Last 100 &middot; #TheLast100</span>
       </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Group links&quot;},&quot;stravaUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Group links&quot;},&quot;spotifyUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Group links&quot;},&quot;guestSlots&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:16,&quot;min&quot;:6,&quot;max&quot;:24,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Conversations&quot;},&quot;formEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://api.web3forms.com/submit&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Enrolment&quot;},&quot;accessKey&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;870cb139-8593-4bd4-934e-5b8db3bce18c&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Enrolment&quot;}}">
+class Component extends DCLogic {
+  state = { f: { name: '', email: '', phone: '', level: '', giving: '' }, error: '', status: 'idle' };
 
-      <div class="field">
-        <label for="giveup">What are you giving up for the 100 days? (optional)</label>
-        <textarea id="giveup" name="giving_up"></textarea>
-      </div>
+  field(key) {
+    return (e) => {
+      const v = e.target.value;
+      this.setState((s) => ({ f: Object.assign({}, s.f, { [key]: v }) }));
+    };
+  }
 
-      <div class="submit-row">
-        <button type="submit" class="btn">I'm in</button>
-      </div>
-      <div id="formStatus"></div>
-    </form>
-  </div>
-</section>
+  submit(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const f = this.state.f;
+    const miss = [];
+    if (!f.name.trim()) miss.push('your name');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email)) miss.push('a valid email');
+    if (f.phone.replace(/\D/g, '').length < 8) miss.push('a WhatsApp number');
+    if (!f.level) miss.push('your running experience');
+    if (miss.length) { this.setState({ error: 'Please add ' + miss.join(', ') + '.' }); return; }
 
-<footer>
-  <div class="wrap">
-    Find Your Ultra Podcast &middot; THE 100 runs 23 September to 31 December 2026
-  </div>
-</footer>
+    this.setState({ error: '', status: 'sending' });
+    const payload = {
+      access_key: this.props.accessKey ?? '870cb139-8593-4bd4-934e-5b8db3bce18c',
+      subject: 'The Last 100: new enrolment, ' + f.name,
+      from_name: 'The Last 100 enrolment form',
+      name: f.name,
+      email: f.email,
+      whatsapp: f.phone,
+      running_experience: f.level,
+      giving_up: f.giving,
+      challenge: 'The Last 100',
+      submittedAt: new Date().toISOString(),
+    };
+    const ep = this.props.formEndpoint ?? 'https://api.web3forms.com/submit';
+    fetch(ep, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then((r) => r.json().catch(() => ({ success: r.ok })))
+      .then((d) => { if (!d || d.success === false) throw new Error(d && d.message); this.setState({ status: 'done' }); })
+      .catch(() => this.setState({ status: 'idle', error: "That didn't send. Try again in a moment." }));
+  }
 
-<script>
-document.getElementById('the100Form').addEventListener('submit', function(e){
-  e.preventDefault();
-  const form = e.target;
-  const status = document.getElementById('formStatus');
-  const data = new FormData(form);
-  status.textContent = "Sending...";
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    body: data
-  }).then(async (response) => {
-    const result = await response.json();
-    if (result.success) {
-      status.innerHTML = "You're in. <a href=\"https://chat.whatsapp.com/DSsXpzxsPfo6uoEtGAeXSa?mode=gi_t\" target=\"_blank\" style=\"color:var(--olive-dark);\">Tap here to join the WhatsApp group</a>.";
-      form.reset();
-    } else {
-      status.textContent = "Something went wrong, please try again.";
+  renderVals() {
+    const count = this.props.guestSlots ?? 16;
+    const guests = [];
+    for (let i = 1; i <= count; i++) {
+      guests.push({ num: String(i).padStart(2, '0'), slot: 'fyu-guest-' + i, yt: '#', sp: '#' });
     }
-  }).catch(() => {
-    status.textContent = "Something went wrong, please try again.";
-  });
-});
+    const levels = ['New to running', 'Regular', 'Racer', 'Ultra'].map((label) => ({
+      label,
+      checked: this.state.f.level === label,
+      pick: () => this.setState((s) => ({ f: Object.assign({}, s.f, { level: label }) })),
+    }));
+    return {
+      guests,
+      levels,
+      f: this.state.f,
+      onName: this.field('name'),
+      onEmail: this.field('email'),
+      onPhone: this.field('phone'),
+      onGiving: this.field('giving'),
+      onSubmit: (e) => this.submit(e),
+      error: this.state.error,
+      hasError: !!this.state.error,
+      sending: this.state.status === 'sending',
+      submitted: this.state.status === 'done',
+      showForm: this.state.status !== 'done',
+      spotifyUrl: this.props.spotifyUrl || '#',
+      whatsappUrl: this.props.whatsappUrl || '#',
+      stravaUrl: this.props.stravaUrl || '#',
+      pillars: [
+        { name: 'Move', copy: '20 minutes of activity. Walk, run, cycle, swim, play a sport. Log it on Strava.' },
+        { name: 'Reset', copy: '5 minutes of meditation. Any app, any style.' },
+        { name: 'Nourish', copy: 'One meal a day that you chose on purpose.' },
+        { name: 'Drop', copy: 'One thing you give up for the full 100 days. You pick it.' },
+      ],
+      perks: [
+        { name: 'Couch to 5K, 10K and 21K plans', copy: 'Training plans built for this group by Coach Biplab Mukherjee.' },
+        { name: 'Strength routine', copy: 'A full strength routine by Vstronger.' },
+        { name: 'Mobility routine', copy: 'A mobility routine by Binay Sah.' },
+        { name: 'Live check-ins', copy: 'Live calls with Vipin and a guest at day 25, 50, 75 and 100.' },
+        { name: 'The WhatsApp group', copy: 'A group that runs the full hundred days with you.' },
+      ],
+      steps: [
+        { num: '1', copy: 'Fill in the form below.' },
+        { num: '2', copy: 'Join the WhatsApp group. The link appears the moment you submit.' },
+        { num: '3', copy: 'Join the Find Your Ultra Strava group.' },
+        { num: '4', copy: 'Start on 23 September. That is day one.' },
+      ],
+      faqs: [
+        { q: 'Do I have to follow the training plans exactly?', a: 'No. All you have to do is the four daily things: 20 minutes of activity, one healthy meal, 5 minutes of meditation, and staying off the thing you dropped. The plans are there if you want to set yourself a bigger goal. They were made by champions, for you, and they are optional.' },
+        { q: 'What if I miss a day?', a: 'You start again the next day. There is no streak to lose and no penalty. Missing a day is not failing the hundred, quitting is.' },
+        { q: 'How do I check in every day?', a: 'One line in the WhatsApp group. Something like: Day 12, Move done, Reset done, Nourish done, Drop held. Ten seconds, no essay.' },
+        { q: 'Does walking count? Does playing a sport count?', a: 'Yes to both. Twenty minutes of moving your body is twenty minutes of moving your body. Football, badminton, swimming, a walk with the dog, all of it counts.' },
+        { q: "I train indoors and don't have a watch, so I can't track it. Is that a problem?", a: 'No proof needed. Do it, then say you did it. This is an honour system, and the only person you can cheat is yourself.' },
+        { q: 'Do I need to post about it on social media?', a: 'No. Post if you want to, use #TheLast100 if you do, but nobody is checking.' },
+        { q: 'Is it free?', a: 'Yes. Completely.' },
+      ],
+    };
+  }
+}
 </script>
-
 </body>
 </html>

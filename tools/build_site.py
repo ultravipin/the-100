@@ -13,30 +13,40 @@ b64 = lambda b: base64.b64encode(b).decode()
 a = open(admin, encoding="utf-8").read()
 data = json.loads(re.search(r'<script id="last100-data" type="application/json">(.*?)</script>', a, re.S).group(1).replace("<\\/", "</"))
 gen = data["meta"]["generatedAt"]
-people, ids = [], []
+people, ids, recs = [], [], []
+st = {"people": 0, "days": 0, "moveMin": 0, "resetMin": 0, "meals": 0, "drop": 0, "smoke": 0, "sugar": 0, "alcohol": 0}
 for p in data["people"]:
     pid = re.sub(r"\D", "", p["id"])[-10:]
     if len(pid) != 10:
         continue
     manual = set(p.get("manual") or [])
-    people.append({"name": p["name"], "start": p["start"],
-                   "days": sorted(d for d in p["days"] if d not in manual),
-                   "manual": sorted(manual)})
+    recs.append({"name": p["name"], "start": p["start"],
+                 "days": sorted(d for d in p["days"] if d not in manual),
+                 "manual": sorted(manual)})
     ids.append(pid)
+    st["people"] += 1
+    drop = (p.get("drop") or "").lower()
+    for d, v in p["days"].items():
+        v = v or ""
+        st["days"] += 1
+        st["moveMin"] += 20 * ("M" in v)
+        st["resetMin"] += 5 * ("R" in v)
+        st["meals"] += ("N" in v)
+        if "D" in v:
+            st["drop"] += 1
+            st["smoke"] += bool(re.search(r"smok|cigar|cigg|tobacco", drop))
+            st["sugar"] += bool(re.search(r"sugar|sweet|mithai|dessert", drop))
+            st["alcohol"] += bool(re.search(r"alcohol|drink|booze|beer", drop))
 
-K = AESGCM.generate_key(bit_length=256)
-iv = os.urandom(12)
-blob = AESGCM(K).encrypt(iv, json.dumps({"people": people}, ensure_ascii=False, separators=(",", ":")).encode(), None)
 keys = {}
-for i, pid in enumerate(ids):
+for rec, pid in zip(recs, ids):
     bits = hashlib.pbkdf2_hmac("sha256", pid.encode(), SALT.encode(), ITER, 48)
-    look, wk = bits[:16].hex(), bits[16:48]
-    iv2 = os.urandom(12)
-    keys[look] = [b64(iv2), b64(AESGCM(wk).encrypt(iv2, K + bytes([i // 256, i % 256]), None))]
+    iv = os.urandom(12)
+    keys[bits[:16].hex()] = [b64(iv), b64(AESGCM(bits[16:48]).encrypt(iv, json.dumps(rec, ensure_ascii=False, separators=(",", ":")).encode(), None))]
 
 h, m = map(int, gen[11:16].split(":"))
 asOfTime = f"{(h % 12) or 12}:{m:02d} {'am' if h < 12 else 'pm'}"
-D = {"salt": SALT, "iter": ITER, "asOf": gen[:10], "asOfTime": asOfTime, "keys": keys, "blob": [b64(iv), b64(blob)],
+D = {"salt": SALT, "iter": ITER, "asOf": gen[:10], "asOfTime": asOfTime, "keys": keys, "stats": st,
      "formKey": "870cb139-8593-4bd4-934e-5b8db3bce18c"}
 snippet = open(snip, encoding="utf-8").read().replace("__L100X_DATA__", json.dumps(D, separators=(",", ":")))
 
@@ -60,4 +70,4 @@ t = t[:i] + "<!--L100X-START-->" + snippet + "<!--L100X-END-->\n" + t[i:]
 enc = "\n" + json.dumps(t).replace("</", "<\\u002F") + "\n  "
 s = s[:a0] + enc + s[a1:]
 open(out, "w", encoding="utf-8").write(s)
-print(f"people={len(people)} keys={len(keys)} asOf={gen} size={len(s)}")
+print(f"people={len(recs)} keys={len(keys)} asOf={gen} size={len(s)} stats={st}")

@@ -1,0 +1,20 @@
+{
+  "latest": [
+    {
+      "show": false,
+      "label": "New episode · EP 113, Part 1",
+      "title": "Badri Rao",
+      "blurb": "Write two or three lines here about the episode.",
+      "youtube": "https://youtu.be/PASTE-YOUTUBE-LINK",
+      "spotify": "https://open.spotify.com/episode/PASTE-SPOTIFY-LINK"
+    },
+    {
+      "show": false,
+      "label": "New episode · EP 113, Part 2",
+      "title": "Badri Rao, Part 2",
+      "blurb": "Write two or three lines here about the episode.",
+      "youtube": "https://youtu.be/PASTE-YOUTUBE-LINK",
+      "spotify": "https://open.spotify.com/episode/PASTE-SPOTIFY-LINK"
+    }
+  ]
+}

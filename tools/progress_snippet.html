@@ -26,6 +26,20 @@
 #l100x .x-stat{background:#FFFDF7;border:1px solid rgba(18,18,18,.14);border-radius:12px;padding:12px 14px}
 #l100x .x-stat b{display:block;font:600 30px 'Oswald',sans-serif;line-height:1.05}
 #l100x .x-stat span{font-size:13px;color:rgba(18,18,18,.66)}
+#l100x .x-big{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:18px 0}
+#l100x .x-bigc{background:#121212;color:#F4F1E8;border-radius:14px;padding:18px 18px 16px}
+#l100x .x-bigc.ol{background:#4E6C1D}
+#l100x .x-bigc b{display:block;font:600 clamp(34px,7vw,48px) 'Oswald',sans-serif;line-height:1;color:#B9CC8E}
+#l100x .x-bigc.ol b{color:#F4F1E8}
+#l100x .x-bigc strong{display:block;font:500 15px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.05em;margin:8px 0 4px}
+#l100x .x-bigc span{font-size:14px;line-height:1.45;color:rgba(244,241,232,.82)}
+#l100x .x-ms{display:grid;gap:8px}
+#l100x .x-m{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:12px 14px;border-radius:12px;background:#FFFDF7;border:1px solid rgba(18,18,18,.14)}
+#l100x .x-m i{font-style:normal;width:28px;height:28px;border-radius:99px;display:flex;align-items:center;justify-content:center;font:600 14px 'Oswald',sans-serif;background:#EAE5D6}
+#l100x .x-m.ok i{background:#6C9429;color:#121212}
+#l100x .x-m.off i{background:#F3D9C9;color:#7a3317}
+#l100x .x-m b{display:block;font:600 16px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+#l100x .x-m span{font-size:14px;line-height:1.45;color:rgba(18,18,18,.78)}
 #l100x .x-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;max-width:520px}
 #l100x .x-d{aspect-ratio:1;border-radius:6px;border:1px solid rgba(18,18,18,.12);background:#EAE5D6;font:500 11px 'IBM Plex Sans',sans-serif;color:rgba(18,18,18,.55);display:flex;align-items:center;justify-content:center;padding:0;min-width:0}
 #l100x .x-d.log{background:#6C9429;border-color:#6C9429;color:#121212}
@@ -37,60 +51,98 @@
 #l100x .x-d.today{outline:2px solid #121212;outline-offset:1px}
 #l100x .x-legend{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 0;font-size:13px;color:rgba(18,18,18,.75)}
 #l100x .x-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:5px;border:1px solid rgba(18,18,18,.2)}
-#l100x .x-list{border:1px solid rgba(18,18,18,.14);border-radius:12px;overflow:hidden;background:#FFFDF7}
-#l100x .x-li{display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 14px;border-top:1px solid rgba(18,18,18,.1);font-size:15px;align-items:center}
-#l100x .x-li:first-child{border-top:0}
-#l100x .x-li.me{background:rgba(108,148,41,.16);font-weight:600}
-#l100x .x-li small{color:rgba(18,18,18,.6);font-size:13px}
-#l100x .x-bar{height:6px;background:#EAE5D6;border-radius:99px;overflow:hidden;width:80px}
-#l100x .x-bar i{display:block;height:100%;background:#6C9429}
 #l100x .x-pill{display:inline-block;font:500 13px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;background:rgba(108,148,41,.22);border-radius:999px;padding:6px 14px;margin-bottom:12px}
 #l100x .x-ok{background:rgba(108,148,41,.16);border-radius:10px;padding:12px 14px;font-size:15px;margin-top:12px}
 #l100x-fab{position:fixed;right:16px;bottom:72px;z-index:60;font:600 14px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;background:#6C9429;color:#121212;border-radius:999px;padding:11px 18px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.15)}
-@media (max-width:520px){#l100x .x-grid{gap:4px}#l100x .x-d{font-size:9px;border-radius:4px}#l100x .x-li{grid-template-columns:1fr auto}#l100x .x-li .x-bar{display:none}}
+@media (max-width:520px){#l100x .x-grid{gap:4px}#l100x .x-d{font-size:9px;border-radius:4px}}
+/* new episode spotlight */
+.l100-ep{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:center}
+.l100-ep + .l100-ep{margin-top:clamp(22px,3vw,36px);padding-top:clamp(22px,3vw,36px);border-top:1px solid rgba(18,18,18,.16)}
+.l100-ep img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;background:rgba(18,18,18,.08)}
+.l100-ep h3{margin:6px 0 10px;font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.015em;font-size:clamp(26px,3.6vw,44px);line-height:1.02}
+.l100-ep p{margin:0 0 18px;font-size:clamp(16px,1.3vw,18px);line-height:1.6;color:rgba(18,18,18,.86);max-width:52ch}
+.l100-tag{display:inline-block;font:600 14px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.12em;color:#121212;background:#6C9429;border-radius:999px;padding:6px 14px}
+.l100-btns{display:flex;flex-wrap:wrap;gap:10px}
+.l100-b{display:inline-flex;align-items:center;gap:8px;font:600 16px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.07em;padding:12px 22px;border-radius:999px;text-decoration:none;cursor:pointer;border:1px solid rgba(18,18,18,.35);color:#121212;background:transparent}
+.l100-b.dark{background:#121212;color:#F4F1E8;border-color:#121212}
+@media (max-width:720px){.l100-ep{grid-template-columns:1fr}}
+/* newsletter */
+.l100-nl-form{display:grid;grid-template-columns:1fr 1.4fr auto;gap:10px;max-width:760px}
+.l100-nl-form input{width:100%;font:16px 'IBM Plex Sans',sans-serif;padding:14px 16px;border-radius:999px;border:1px solid rgba(244,241,232,.35);background:rgba(244,241,232,.08);color:#F4F1E8}
+.l100-nl-form input::placeholder{color:rgba(244,241,232,.6)}
+.l100-nl-form button{font:600 16px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.08em;padding:14px 26px;border-radius:999px;border:0;background:#6C9429;color:#121212;cursor:pointer;white-space:nowrap}
+.l100-nl-form button[disabled]{opacity:.6}
+.l100-nl-msg{font-size:15px;margin-top:12px;min-height:1em}
+.l100-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media (max-width:720px){.l100-nl-form{grid-template-columns:1fr}}
+#l100-pop{position:fixed;inset:0;z-index:8500;background:rgba(18,18,18,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+#l100-pop[hidden]{display:none}
+#l100-pop .p-card{position:relative;max-width:460px;width:100%;background:#121212;color:#F4F1E8;border-radius:18px;padding:28px 22px 22px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+#l100-pop .p-k{font:600 13px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.16em;color:#B9CC8E}
+#l100-pop h3{margin:8px 0 10px;font:600 clamp(30px,8vw,40px) 'Oswald',sans-serif;text-transform:uppercase;line-height:1}
+#l100-pop p{margin:0 0 16px;font-size:15.5px;line-height:1.55;color:rgba(244,241,232,.86)}
+#l100-pop .l100-nl-form{grid-template-columns:1fr}
+#l100-pop .p-x{position:absolute;top:10px;right:12px;background:transparent;border:0;color:rgba(244,241,232,.7);font-size:26px;cursor:pointer;line-height:1;padding:6px}
+#l100-pop .p-later{display:block;margin:12px auto 0;background:transparent;border:0;color:rgba(244,241,232,.65);font:14px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:underline}
+#l100-pop .p-small{font-size:13px;color:rgba(244,241,232,.6);margin-top:10px}
 </style>
 <div class="x-wrap">
   <div class="x-top"><div class="x-brand">The Last <span>100</span></div><button class="x-close" type="button" id="l100x-close">Close</button></div>
   <div class="x-tabs" role="tablist">
     <button class="x-tab" type="button" role="tab" data-t="progress">My progress</button>
-    <button class="x-tab" type="button" role="tab" data-t="everyone">Everyone</button>
+    <button class="x-tab" type="button" role="tab" data-t="together">Together</button>
     <button class="x-tab" type="button" role="tab" data-t="invite">Invite friends</button>
   </div>
   <div id="l100x-body"></div>
 </div>
 </div>
 <a id="l100x-fab" href="#progress">My progress</a>
+<div id="l100-pop" hidden role="dialog" aria-modal="true" aria-labelledby="l100-pop-h">
+  <div class="p-card">
+    <button class="p-x" type="button" aria-label="Close" data-pop-close>×</button>
+    <div class="p-k">New · Free · Every other Sunday</div>
+    <h3 id="l100-pop-h">The Sunday Long Run</h3>
+    <p>The best of 112+ Find Your Ultra conversations, distilled into one unhurried letter. Plus what ultras, travel, poetry, fatherhood and plenty of mistakes keep teaching me about a chaotic, beautiful life.</p>
+    <form class="l100-nl-form" data-src="popup" novalidate>
+      <input name="name" type="text" autocomplete="given-name" placeholder="First name" required>
+      <input name="email" type="email" autocomplete="email" placeholder="Email address" required>
+      <label class="l100-hp">Leave this empty <input name="botcheck" type="checkbox" tabindex="-1"></label>
+      <button type="submit">Count me in</button>
+      <div class="l100-nl-msg" aria-live="polite"></div>
+    </form>
+    <div class="p-small">Just your name and email. No spam. Unsubscribe anytime.</div>
+    <button class="p-later" type="button" data-pop-close>Maybe later</button>
+  </div>
+</div>
 <script type="application/json" id="l100x-data">__L100X_DATA__</script>
 <script>
 (function () {
   var D = JSON.parse(document.getElementById('l100x-data').textContent);
   var root = document.getElementById('l100x'), body = document.getElementById('l100x-body');
+  var UPD = 'This board updates three times a day: around 10am, 2pm and 10pm. A check-in you just made will show after the next update.';
   var KEY = 'tl100.progress', CLOSE_DAY = '2026-10-20', SITE = 'https://findyourultra.in';
-  var state = { tab: 'progress', me: null, all: null, sel: {}, err: '', busy: false, sent: '' };
+  var state = { tab: 'progress', me: null, num: '', sel: {}, err: '', busy: false, sent: '' };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function istToday() { var d = new Date(Date.now() + 5.5 * 3600e3); return d.toISOString().slice(0, 10); }
   function toN(s) { return Math.round(Date.parse(s + 'T00:00:00Z') / 864e5); }
   function toS(n) { return new Date(n * 864e5).toISOString().slice(0, 10); }
   var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   function fmt(s) { var p = s.split('-'); return (+p[2]) + ' ' + MON[+p[1] - 1]; }
+  function num(n) { return Number(n).toLocaleString('en-IN'); }
   function b64(s) { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
   function hex(u) { return Array.prototype.map.call(u, function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); }
   function phone10(v) { var d = String(v || '').replace(/\D/g, ''); return d.length >= 10 ? d.slice(-10) : ''; }
   function store(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   function load(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
 
-  async function unlock(num) {
+  async function unlock(n) {
     var enc = new TextEncoder();
-    var base = await crypto.subtle.importKey('raw', enc.encode(num), 'PBKDF2', false, ['deriveBits']);
+    var base = await crypto.subtle.importKey('raw', enc.encode(n), 'PBKDF2', false, ['deriveBits']);
     var bits = new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: enc.encode(D.salt), iterations: D.iter }, base, 384));
-    var look = hex(bits.slice(0, 16)), w = D.keys[look];
+    var w = D.keys[hex(bits.slice(0, 16))];
     if (!w) return null;
-    var wk = await crypto.subtle.importKey('raw', bits.slice(16, 48), 'AES-GCM', false, ['decrypt']);
-    var raw = new Uint8Array(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(w[0]) }, wk, b64(w[1])));
-    var k = await crypto.subtle.importKey('raw', raw.slice(0, 32), 'AES-GCM', false, ['decrypt']);
-    var idx = raw[32] * 256 + raw[33];
-    var all = JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(D.blob[0]) }, k, b64(D.blob[1]))));
-    return { me: all.people[idx], all: all, num: num };
+    var k = await crypto.subtle.importKey('raw', bits.slice(16, 48), 'AES-GCM', false, ['decrypt']);
+    return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(w[0]) }, k, b64(w[1]))));
   }
 
   function stats(p) {
@@ -100,18 +152,57 @@
     var total = Object.keys(logged).filter(function (d) { var n = toN(d); return n >= sN && n < sN + 100; }).length;
     var streak = 0, n = Math.min(tN, dataN); if (!logged[toS(n)]) n--;
     while (n >= sN && logged[toS(n)]) { streak++; n--; }
-    return { today: today, tN: tN, sN: sN, dataN: dataN, logged: logged, dayNum: dayNum, total: total, streak: streak };
+    var lastChecked = Math.min(tN - 1, dataN - 1), missed = 0;
+    for (n = sN; n <= lastChecked && n < sN + 100; n++) if (!logged[toS(n)]) missed++;
+    var toGo = Math.max(0, Math.min(100, sN + 100 - tN));
+    return { today: today, tN: tN, sN: sN, dataN: dataN, logged: logged, dayNum: dayNum, total: total, streak: streak, missed: missed, toGo: toGo };
+  }
+  function reported() { return load('tl100.reported') || {}; }
+
+  function togetherCards() {
+    var S = D.stats, c = [];
+    var hrs = Math.round(S.moveMin / 60);
+    c.push(['', num(hrs) + ' hrs', 'of movement', num(S.moveMin) + ' minutes of walking, running, cycling and lifting. That\'s ' + num(Math.round(hrs / 24)) + ' days of moving without a single stop.']);
+    c.push(['ol', num(S.resetMin), 'minutes of stillness', 'Five quiet minutes at a time, ' + num(Math.round(S.resetMin / 60)) + ' hours of meditation between us.']);
+    c.push(['', num(S.days), 'days of showing up', 'If one person had done all of it alone, it would have taken ' + (S.days / 365).toFixed(1) + ' years.']);
+    c.push(['ol', num(S.meals), 'healthy meals chosen', 'One good plate a day, every day, adds up faster than you think.']);
+    if (S.smoke) c.push(['', num(S.smoke), 'smoke-free days', 'Days our smokers chose not to light up. Every one of them counts.']);
+    if (S.sugar) c.push(['ol', num(S.sugar), 'days without sugar', 'For those who gave up sugar and sweets.']);
+    if (S.alcohol) c.push(['', num(S.alcohol), 'days without alcohol', 'For those who put the drink down.']);
+    c.push([S.smoke ? 'ol' : '', num(S.drop), 'promises kept', 'Days someone stayed away from the one thing they chose to drop.']);
+    return '<div class="x-big">' + c.map(function (x) { return '<div class="x-bigc ' + x[0] + '"><b>' + x[1] + '</b><strong>' + esc(x[2]) + '</strong><span>' + esc(x[3]) + '</span></div>'; }).join('') + '</div>';
   }
 
-  function reported() { return load('tl100.reported') || {}; }
+  function viewTogether() {
+    return '<span class="x-pill">' + num(D.stats.people) + ' people · updated ' + fmt(D.asOf) + '</span><h2>What we\'ve done together</h2>' +
+      '<p>Every check-in from every person in The Last 100, added up. This is what a hundred small days look like when a whole group shows up.</p>' + togetherCards() +
+      '<p class="x-muted">' + UPD + '</p>';
+  }
 
   function viewLogin() {
     return '<span class="x-pill">Participants only</span><h2>See your 100 days</h2>' +
-      '<p>Enter the WhatsApp number you signed up with. Your number never leaves this page, it only unlocks your record.</p>' +
+      '<p>Enter the WhatsApp number you signed up with. Your number never leaves this page, it only unlocks your own record. Nobody else can see your days.</p>' +
+      '<p class="x-muted">' + UPD + '</p>' +
       '<form id="l100x-login" class="x-card"><label for="l100x-num" class="x-muted">WhatsApp number</label>' +
       '<div class="x-row" style="margin-top:6px"><input type="tel" id="l100x-num" inputmode="numeric" autocomplete="tel" placeholder="98xxxxxxxx" style="flex:1 1 220px">' +
       '<button class="x-btn" type="submit"' + (state.busy ? ' disabled' : '') + '>' + (state.busy ? 'Checking…' : 'Show my log') + '</button></div>' +
-      (state.err ? '<div class="x-err">' + esc(state.err) + '</div>' : '') + '</form>';
+      (state.err ? '<div class="x-err">' + esc(state.err) + '</div>' : '') + '</form>' +
+      '<h3>Meanwhile, together</h3>' + togetherCards().replace('class="x-big"', 'class="x-big" style="margin-top:8px"');
+  }
+
+  function milestones(s) {
+    var certLeft = Math.max(0, 80 - s.total), started = s.tN >= s.sN, perfect = s.missed === 0;
+    var open = istToday() <= CLOSE_DAY, rows = [];
+    rows.push([certLeft ? '' : 'ok', certLeft ? '80' : '✓', 'Certificate',
+      certLeft ? 'Log ' + certLeft + ' more ' + (certLeft === 1 ? 'day' : 'days') + ' to earn your Find Your Ultra certificate (80 of 100).' : 'Earned. 80 days logged. Well done.']);
+    var drawTxt = !started ? 'Starts on ' + fmt(toS(s.sN)) + '. Log all 100 days to enter.'
+      : perfect ? 'On track. ' + s.toGo + ' ' + (s.toGo === 1 ? 'day' : 'days') + ' to go, including today. Log every one to enter.'
+      : 'Needs all 100 days logged. Your record shows ' + s.missed + ' missed ' + (s.missed === 1 ? 'day' : 'days') + '.';
+    rows.push([!started || perfect ? 'ok' : 'off', !started || perfect ? '100' : '!', 'Prize draw', drawTxt]);
+    rows.push([!started || perfect ? 'ok' : 'off', !started || perfect ? '100' : '!', 'Podcast spot draw',
+      !started || perfect ? 'Three people who complete all 100 days will be picked to come on Find Your Ultra. ' + (started ? s.toGo + ' days to go.' : '') : 'Also needs all 100 days logged.']);
+    var help = (!perfect && started) ? '<p class="x-muted" style="margin-top:10px">Did those days but forgot to log? Report them below and they will be added once checked.' + (open ? ' Or, if you had a break, you can restart your 100 days any day before 20 October. Just message Vipin.' : '') + '</p>' : '';
+    return '<h3>Your milestones</h3><div class="x-ms">' + rows.map(function (r) { return '<div class="x-m ' + r[0] + '"><i>' + r[1] + '</i><div><b>' + esc(r[2]) + '</b><span>' + esc(r[3]) + '</span></div></div>'; }).join('') + '</div>' + help;
   }
 
   function viewMe() {
@@ -130,19 +221,19 @@
       cells += '<button type="button" class="' + cls + '" data-d="' + d + '" title="' + esc(title) + '" aria-label="' + esc(title) + '">' + (i + 1) + '</button>';
     }
     var selN = Object.keys(state.sel).length;
-    var certLeft = Math.max(0, 80 - s.total);
     return '<span class="x-pill">Updated ' + fmt(D.asOf) + ', ' + esc(D.asOfTime) + '</span>' +
       '<h2>Hi ' + esc(p.name.split(' ')[0]) + '</h2>' +
-      '<p class="x-muted">Your 100 days run from ' + fmt(p.start) + ' to ' + fmt(toS(s.sN + 99)) + '. <a href="#" id="l100x-out" style="color:inherit">Not you?</a></p>' +
+      '<p class="x-muted">Your 100 days run from ' + fmt(p.start) + ' to ' + fmt(toS(s.sN + 99)) + '. ' + UPD + ' <a href="#" id="l100x-out" style="color:inherit">Not you?</a></p>' +
       '<div class="x-stats">' +
       '<div class="x-stat"><b>' + (s.tN < s.sN ? '–' : s.dayNum) + '</b><span>Day of 100</span></div>' +
       '<div class="x-stat"><b>' + s.total + '</b><span>Days logged</span></div>' +
       '<div class="x-stat"><b>' + s.streak + '</b><span>Current streak</span></div>' +
-      '<div class="x-stat"><b>' + (certLeft ? certLeft : '✓') + '</b><span>' + (certLeft ? 'More days for the certificate' : 'Certificate earned') + '</span></div></div>' +
-      '<div class="x-grid" id="l100x-grid">' + cells + '</div>' +
+      '<div class="x-stat"><b>' + s.toGo + '</b><span>Days to go</span></div></div>' +
+      milestones(s) +
+      '<h3>Your 100 days</h3><div class="x-grid" id="l100x-grid">' + cells + '</div>' +
       '<div class="x-legend"><span><i style="background:#6C9429"></i>Logged</span><span><i style="background:#B9CC8E"></i>Added by Vipin</span><span><i style="background:#fff;border:1.5px dashed #B5532F"></i>Not logged, tap to report</span><span><i style="background:#F3D9C9;border-color:#B5532F"></i>Reported</span><span><i style="background:#F4F1E8;border-style:dotted"></i>Not updated yet</span></div>' +
       '<h3>A day missing?</h3>' +
-      '<p>If you did a day but it shows as not logged, tap it on the grid and send it here. Vipin reviews these once a week, so no need to message him. You can report days from the last two weeks. Days after ' + fmt(D.asOf) + ' appear at the next update.</p>' +
+      '<p>If you did a day but it shows as not logged, tap it on the grid and send it here. Vipin reviews these once a week, so no need to message him. You can report days from the last two weeks. Check-ins after the last update show up at the next one (10am, 2pm or 10pm).</p>' +
       '<div class="x-card"><div class="x-muted" style="margin-bottom:8px">' + (selN ? 'Selected: ' + Object.keys(state.sel).sort().map(fmt).join(', ') : 'No days selected yet. Tap a dashed day above.') + '</div>' +
       '<textarea id="l100x-note" rows="2" placeholder="Anything Vipin should know (optional)"></textarea>' +
       '<div class="x-row" style="margin-top:10px"><button class="x-btn olive" type="button" id="l100x-send"' + (!selN || state.busy ? ' disabled' : '') + '>' + (state.busy ? 'Sending…' : 'Report ' + (selN || '') + ' ' + (selN === 1 ? 'day' : 'days')) + '</button></div>' +
@@ -151,25 +242,13 @@
       '<p class="x-muted" style="margin-top:18px">Please keep logging every day at <a href="#check-in" style="color:inherit">Check in</a>. Logged days are what count for the certificate, the draws and the podcast spots.</p>';
   }
 
-  function viewEveryone() {
-    if (!state.me) return '<h2>Everyone</h2><p>The group board is for participants. Unlock it with your WhatsApp number on the My progress tab.</p><button class="x-btn" type="button" data-go="progress">Go to My progress</button>';
-    var list = state.all.people.map(function (p, i) { var s = stats(p); return { i: i, name: p.name, day: s.dayNum, tot: s.total, st: s.streak, up: s.tN < s.sN }; });
-    list.sort(function (a, b) { return b.tot - a.tot || b.st - a.st || a.name.localeCompare(b.name); });
-    var mine = state.all.people.indexOf(state.me);
-    return '<h2>Everyone</h2><p class="x-muted">' + list.length + ' people in The Last 100. Days logged so far, updated ' + fmt(D.asOf) + '.</p>' +
-      '<div class="x-list">' + list.map(function (r) {
-        return '<div class="x-li' + (r.i === mine ? ' me' : '') + '"><div>' + esc(r.name) + (r.i === mine ? ' (you)' : '') + '<br><small>' + (r.up ? 'Starting soon' : 'Day ' + r.day + ' · streak ' + r.st) + '</small></div>' +
-          '<div class="x-bar"><i style="width:' + Math.round(100 * r.tot / Math.max(1, r.day)) + '%"></i></div><div><b>' + r.tot + '</b> <small>logged</small></div></div>';
-      }).join('') + '</div>';
-  }
-
   function viewInvite() {
     var open = istToday() <= CLOSE_DAY;
     if (!open) return '<span class="x-pill">Registrations closed</span><h2>See you in the next one</h2><p>Registrations for The Last 100 are now closed. Thank you to everyone who joined and to everyone who spread the word. A new challenge is coming, so stay close to Find Your Ultra to hear about it first.</p>' +
       '<div class="x-row"><a class="x-btn" href="https://www.instagram.com/find_your_ultra" target="_blank" rel="noopener">Instagram</a><a class="x-btn ghost" href="https://www.youtube.com/@FindYourUltra" target="_blank" rel="noopener">YouTube</a></div>';
     var msg = "I'm doing The Last 100, a free 100-day challenge from Find Your Ultra. Every day: move for 20 minutes, 5 minutes of stillness, one healthy meal, and drop one thing you want out of your life. Your 100 days start the day you join. Sign-ups close on 20 October. Join me: " + SITE;
     return '<span class="x-pill">Open till 20 October</span><h2>Bring someone along</h2><p>The Last 100 is better with people you know. Send this to a friend or family member. Sign-ups close on 20 October.</p>' +
-      '<div class="x-card"><p style="margin:0 0 14px;font-size:15px">' + esc(msg) + '</p><div class="x-row">' +
+      '<div class="x-card"><p style="margin:0 0 14px;font-size:15px" id="l100x-msg">' + esc(msg) + '</p><div class="x-row">' +
       '<a class="x-btn olive" href="https://wa.me/?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Share on WhatsApp</a>' +
       (navigator.share ? '<button class="x-btn" type="button" id="l100x-share">Share…</button>' : '') +
       '<button class="x-btn ghost" type="button" id="l100x-copy">Copy message</button></div>' +
@@ -178,23 +257,20 @@
 
   function render() {
     root.querySelectorAll('.x-tab').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.t === state.tab); });
-    body.innerHTML = state.tab === 'invite' ? viewInvite() : state.tab === 'everyone' ? viewEveryone() : (state.me ? viewMe() : viewLogin());
+    body.innerHTML = state.tab === 'invite' ? viewInvite() : state.tab === 'together' ? viewTogether() : (state.me ? viewMe() : viewLogin());
     var f = document.getElementById('l100x-login');
-    if (f) {
-      var inp = document.getElementById('l100x-num');
-      f.onsubmit = function (e) { e.preventDefault(); tryUnlock(inp.value, true); };
-    }
+    if (f) f.onsubmit = function (e) { e.preventDefault(); tryUnlock(document.getElementById('l100x-num').value, true); };
   }
 
   async function tryUnlock(v, loud) {
-    var num = phone10(v);
-    if (!num) { if (loud) { state.err = 'Please enter your 10-digit WhatsApp number.'; render(); } return; }
+    var n = phone10(v);
+    if (!n) { if (loud) { state.err = 'Please enter your full WhatsApp number (10 digits).'; render(); } return; }
     state.busy = true; state.err = ''; if (loud) render();
     try {
-      var r = await unlock(num);
-      if (r) { state.me = r.me; state.all = r.all; state.num = num; store(KEY, num); }
+      var r = await unlock(n);
+      if (r) { state.me = r; state.num = n; store(KEY, n); }
       else if (loud) state.err = "We couldn't find that number. Use the number you signed up with. If it still doesn't work, message Vipin on WhatsApp.";
-    } catch (e) { if (loud) state.err = "Something went wrong on this browser. Try again, or open the page in Chrome or Safari."; }
+    } catch (e) { if (loud) state.err = 'Something went wrong on this browser. Try again, or open the page in Chrome or Safari.'; }
     state.busy = false; render();
   }
 
@@ -220,36 +296,112 @@
   body.addEventListener('click', function (e) {
     var b = e.target.closest('button, a');
     if (!b) return;
-    if (b.id === 'l100x-out') { e.preventDefault(); state.me = null; state.all = null; state.sel = {}; store(KEY, null); render(); return; }
-    if (b.dataset.go) { state.tab = b.dataset.go; render(); return; }
+    if (b.id === 'l100x-out') { e.preventDefault(); state.me = null; state.sel = {}; store(KEY, null); render(); return; }
     if (b.classList.contains('miss')) { var d = b.dataset.d; state.sent = ''; if (state.sel[d]) delete state.sel[d]; else state.sel[d] = 1; var note = (document.getElementById('l100x-note') || {}).value; render(); if (note) document.getElementById('l100x-note').value = note; return; }
     if (b.id === 'l100x-send') { sendReport(); return; }
     if (b.id === 'l100x-copy' || b.id === 'l100x-share') {
-      var msg = body.querySelector('.x-card p').textContent;
+      var msg = document.getElementById('l100x-msg').textContent;
       if (b.id === 'l100x-share') { navigator.share({ text: msg }).catch(function () {}); return; }
       (navigator.clipboard ? navigator.clipboard.writeText(msg) : Promise.reject()).then(function () { state.sent = 'Copied. Paste it anywhere.'; render(); }, function () { state.sent = 'Copy didn\'t work here. Press and hold the message to copy it.'; render(); });
     }
   });
-  root.querySelectorAll('.x-tab').forEach(function (b) { b.onclick = function () { state.tab = b.dataset.t; state.sent = ''; state.err = ''; history.replaceState(null, '', '#' + (b.dataset.t === 'invite' ? 'invite' : 'progress')); render(); }; });
+  root.querySelectorAll('.x-tab').forEach(function (b) { b.onclick = function () { state.tab = b.dataset.t; state.sent = ''; state.err = ''; history.replaceState(null, '', '#' + b.dataset.t); render(); }; });
 
   var lastScroll = 0;
   function openFromHash() {
     var h = location.hash;
-    if (h === '#progress' || h === '#invite' || h === '#everyone') {
+    if (h === '#progress' || h === '#invite' || h === '#together') {
       if (root.hidden) lastScroll = window.pageYOffset;
       state.tab = h.slice(1); root.hidden = false; document.documentElement.style.overflow = 'hidden'; render(); root.scrollTop = 0;
     } else if (!root.hidden) { root.hidden = true; document.documentElement.style.overflow = ''; }
   }
   document.getElementById('l100x-close').onclick = function () { history.replaceState(null, '', location.pathname + location.search); root.hidden = true; document.documentElement.style.overflow = ''; window.scrollTo(0, lastScroll); };
   window.addEventListener('hashchange', openFromHash);
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('a[href="#check-in"]');
-    if (a && !root.hidden) { root.hidden = true; document.documentElement.style.overflow = ''; }
-  });
 
   var saved = load(KEY), ck = load('tl100.checkin');
   var guess = saved || (ck && phone10(ck.id));
   if (guess) tryUnlock(guess, false);
   openFromHash();
+
+  /* ---------- share buttons on episodes (shares the YouTube link) ---------- */
+  function shareLink(url, title) {
+    var text = title ? title + ' on Find Your Ultra' : 'Find Your Ultra';
+    if (navigator.share) { navigator.share({ title: text, text: text, url: url }).catch(function () {}); return; }
+    window.open('https://wa.me/?text=' + encodeURIComponent(text + ': ' + url), '_blank', 'noopener');
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-l100-share]');
+    if (!a) return;
+    e.preventDefault();
+    shareLink(a.getAttribute('href') || a.dataset.url, a.getAttribute('data-l100-share'));
+  });
+
+  /* ---------- new episode spotlight, from episodes.json in the repo ---------- */
+  function ytId(u) { var m = String(u || '').match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : ''; }
+  function fillLatest(list) {
+    var sec = document.getElementById('new-episode'), box = document.getElementById('l100-latest');
+    if (!sec || !box) return false;
+    list = (list || []).filter(function (x) { return x && x.show && x.youtube; });
+    if (!list.length) { sec.style.display = 'none'; return true; }
+    box.innerHTML = list.map(function (x) {
+      var id = ytId(x.youtube), th = id ? 'https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg' : '';
+      return '<div class="l100-ep"><a href="' + esc(x.youtube) + '" target="_blank" rel="noopener">' + (th ? '<img src="' + th + '" alt="' + esc(x.title) + '" loading="lazy" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/' + id + '/mqdefault.jpg\'">' : '') + '</a>' +
+        '<div><span class="l100-tag">' + esc(x.label || 'New episode') + '</span><h3>' + esc(x.title) + '</h3>' + (x.blurb ? '<p>' + esc(x.blurb) + '</p>' : '') +
+        '<div class="l100-btns"><a class="l100-b dark" href="' + esc(x.youtube) + '" target="_blank" rel="noopener">Watch on YouTube</a>' +
+        (x.spotify ? '<a class="l100-b" href="' + esc(x.spotify) + '" target="_blank" rel="noopener">Listen on Spotify</a>' : '') +
+        '<a class="l100-b" href="' + esc(x.youtube) + '" data-l100-share="' + esc(x.title) + '">Share</a></div></div></div>';
+    }).join('');
+    sec.style.display = '';
+    return true;
+  }
+  function loadLatest(tries) {
+    fetch('episodes.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : { latest: [] }; })
+      .catch(function () { return { latest: [] }; })
+      .then(function (j) { (function go(t) { if (!fillLatest(j.latest) && t > 0) setTimeout(function () { go(t - 1); }, 300); })(tries); });
+  }
+  loadLatest(30);
+
+  /* ---------- The Sunday Long Run newsletter ---------- */
+  var NL = 'tl100.sundaylongrun', pop = document.getElementById('l100-pop');
+  function nlState() { return load(NL) || {}; }
+  document.addEventListener('submit', function (e) {
+    var f = e.target.closest('.l100-nl-form');
+    if (!f) return;
+    e.preventDefault();
+    var name = f.elements.name.value.trim(), email = f.elements.email.value.trim(), msg = f.querySelector('.l100-nl-msg'), btn = f.querySelector('button[type=submit]');
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = 'Please add your first name and a valid email.'; return; }
+    if (f.elements.botcheck && f.elements.botcheck.checked) return;
+    btn.disabled = true; msg.textContent = 'Signing you up…';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ access_key: D.formKey, subject: 'The Sunday Long Run: new subscriber, ' + name, from_name: 'The Sunday Long Run sign-up',
+        'First name': name, Email: email, Source: f.dataset.src || 'site', 'Signed up': new Date().toISOString() })
+    }).then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
+      .then(function (d) {
+        if (!d || d.success === false) throw new Error();
+        store(NL, { subscribed: true, at: Date.now() });
+        f.innerHTML = '<div class="l100-nl-msg" style="font-size:17px">You\'re in, ' + esc(name) + '. The first Sunday Long Run lands in your inbox soon.</div>';
+        if (f.dataset.src === 'popup') setTimeout(function () { pop.hidden = true; }, 2600);
+      })
+      .catch(function () { btn.disabled = false; msg.textContent = "That didn't go through. Please try again in a moment."; });
+  });
+  function closePop() { pop.hidden = true; var s = nlState(); s.dismissed = Date.now(); store(NL, s); }
+  pop.addEventListener('click', function (e) { if (e.target === pop || e.target.closest('[data-pop-close]')) closePop(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) closePop(); });
+  function maybePop() {
+    var s = nlState();
+    if (s.subscribed || (s.dismissed && Date.now() - s.dismissed < 14 * 864e5)) return;
+    if (!root.hidden || !pop.hidden) return;
+    var inForm = document.activeElement && /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
+    if (inForm) return;
+    pop.hidden = false; shown = true;
+  }
+  var shown = false;
+  setTimeout(function () { if (!shown) maybePop(); }, 25000);
+  window.addEventListener('scroll', function () {
+    if (shown) return;
+    var h = document.documentElement, p = (h.scrollTop || document.body.scrollTop) / Math.max(1, h.scrollHeight - h.clientHeight);
+    if (p > 0.55) maybePop();
+  }, { passive: true });
 })();
 </script>

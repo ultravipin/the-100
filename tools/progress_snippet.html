@@ -1,0 +1,255 @@
+<div id="l100x" hidden>
+<style>
+#l100x{position:fixed;inset:0;z-index:9000;background:#F4F1E8;color:#121212;overflow-y:auto;-webkit-overflow-scrolling:touch;font-family:'IBM Plex Sans',system-ui,sans-serif}
+#l100x *{box-sizing:border-box}
+#l100x .x-wrap{max-width:860px;margin:0 auto;padding:18px 16px 64px}
+#l100x .x-top{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;background:rgba(244,241,232,.96);backdrop-filter:blur(8px);padding:12px 0;border-bottom:1px solid rgba(18,18,18,.14);z-index:2}
+#l100x .x-brand{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:20px}
+#l100x .x-brand span{color:#4E6C1D}
+#l100x .x-close{font:600 14px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;background:#121212;color:#F4F1E8;border:0;border-radius:999px;padding:9px 18px;cursor:pointer}
+#l100x .x-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 22px}
+#l100x .x-tab{font:500 15px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.05em;background:transparent;color:#121212;border:1px solid rgba(18,18,18,.3);border-radius:999px;padding:8px 16px;cursor:pointer}
+#l100x .x-tab[aria-selected=true]{background:#121212;color:#F4F1E8;border-color:#121212}
+#l100x h2{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.015em;font-size:clamp(30px,6vw,46px);line-height:1;margin:0 0 12px}
+#l100x h3{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:20px;margin:26px 0 10px}
+#l100x p{font-size:16px;line-height:1.55;margin:0 0 12px;max-width:60ch}
+#l100x .x-muted{color:rgba(18,18,18,.66);font-size:14px}
+#l100x .x-card{background:#FFFDF7;border:1px solid rgba(18,18,18,.14);border-radius:14px;padding:18px}
+#l100x input[type=tel],#l100x textarea{width:100%;font:16px 'IBM Plex Sans',sans-serif;padding:12px 14px;border:1px solid rgba(18,18,18,.3);border-radius:10px;background:#fff;color:#121212}
+#l100x .x-btn{font:600 15px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;background:#121212;color:#F4F1E8;border:0;border-radius:999px;padding:12px 22px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+#l100x .x-btn.olive{background:#6C9429;color:#121212}
+#l100x .x-btn.ghost{background:transparent;color:#121212;border:1px solid rgba(18,18,18,.35)}
+#l100x .x-btn[disabled]{opacity:.5;cursor:default}
+#l100x .x-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#l100x .x-err{color:#9b2c1f;font-size:14px;margin-top:8px}
+#l100x .x-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0}
+#l100x .x-stat{background:#FFFDF7;border:1px solid rgba(18,18,18,.14);border-radius:12px;padding:12px 14px}
+#l100x .x-stat b{display:block;font:600 30px 'Oswald',sans-serif;line-height:1.05}
+#l100x .x-stat span{font-size:13px;color:rgba(18,18,18,.66)}
+#l100x .x-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;max-width:520px}
+#l100x .x-d{aspect-ratio:1;border-radius:6px;border:1px solid rgba(18,18,18,.12);background:#EAE5D6;font:500 11px 'IBM Plex Sans',sans-serif;color:rgba(18,18,18,.55);display:flex;align-items:center;justify-content:center;padding:0;min-width:0}
+#l100x .x-d.log{background:#6C9429;border-color:#6C9429;color:#121212}
+#l100x .x-d.man{background:#B9CC8E;border-color:#6C9429;color:#121212}
+#l100x .x-d.miss{background:#fff;border:1.5px dashed #B5532F;color:#B5532F;cursor:pointer}
+#l100x .x-d.miss.sel{background:#B5532F;color:#fff;border-style:solid}
+#l100x .x-d.rep{background:#F3D9C9;border:1.5px solid #B5532F;color:#7a3317}
+#l100x .x-d.pend{background:#F4F1E8;border-style:dotted}
+#l100x .x-d.today{outline:2px solid #121212;outline-offset:1px}
+#l100x .x-legend{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 0;font-size:13px;color:rgba(18,18,18,.75)}
+#l100x .x-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:5px;border:1px solid rgba(18,18,18,.2)}
+#l100x .x-list{border:1px solid rgba(18,18,18,.14);border-radius:12px;overflow:hidden;background:#FFFDF7}
+#l100x .x-li{display:grid;grid-template-columns:1fr auto auto;gap:12px;padding:10px 14px;border-top:1px solid rgba(18,18,18,.1);font-size:15px;align-items:center}
+#l100x .x-li:first-child{border-top:0}
+#l100x .x-li.me{background:rgba(108,148,41,.16);font-weight:600}
+#l100x .x-li small{color:rgba(18,18,18,.6);font-size:13px}
+#l100x .x-bar{height:6px;background:#EAE5D6;border-radius:99px;overflow:hidden;width:80px}
+#l100x .x-bar i{display:block;height:100%;background:#6C9429}
+#l100x .x-pill{display:inline-block;font:500 13px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;background:rgba(108,148,41,.22);border-radius:999px;padding:6px 14px;margin-bottom:12px}
+#l100x .x-ok{background:rgba(108,148,41,.16);border-radius:10px;padding:12px 14px;font-size:15px;margin-top:12px}
+#l100x-fab{position:fixed;right:16px;bottom:72px;z-index:60;font:600 14px 'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;background:#6C9429;color:#121212;border-radius:999px;padding:11px 18px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+@media (max-width:520px){#l100x .x-grid{gap:4px}#l100x .x-d{font-size:9px;border-radius:4px}#l100x .x-li{grid-template-columns:1fr auto}#l100x .x-li .x-bar{display:none}}
+</style>
+<div class="x-wrap">
+  <div class="x-top"><div class="x-brand">The Last <span>100</span></div><button class="x-close" type="button" id="l100x-close">Close</button></div>
+  <div class="x-tabs" role="tablist">
+    <button class="x-tab" type="button" role="tab" data-t="progress">My progress</button>
+    <button class="x-tab" type="button" role="tab" data-t="everyone">Everyone</button>
+    <button class="x-tab" type="button" role="tab" data-t="invite">Invite friends</button>
+  </div>
+  <div id="l100x-body"></div>
+</div>
+</div>
+<a id="l100x-fab" href="#progress">My progress</a>
+<script type="application/json" id="l100x-data">__L100X_DATA__</script>
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById('l100x-data').textContent);
+  var root = document.getElementById('l100x'), body = document.getElementById('l100x-body');
+  var KEY = 'tl100.progress', CLOSE_DAY = '2026-10-20', SITE = 'https://findyourultra.in';
+  var state = { tab: 'progress', me: null, all: null, sel: {}, err: '', busy: false, sent: '' };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function istToday() { var d = new Date(Date.now() + 5.5 * 3600e3); return d.toISOString().slice(0, 10); }
+  function toN(s) { return Math.round(Date.parse(s + 'T00:00:00Z') / 864e5); }
+  function toS(n) { return new Date(n * 864e5).toISOString().slice(0, 10); }
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  function fmt(s) { var p = s.split('-'); return (+p[2]) + ' ' + MON[+p[1] - 1]; }
+  function b64(s) { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+  function hex(u) { return Array.prototype.map.call(u, function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); }
+  function phone10(v) { var d = String(v || '').replace(/\D/g, ''); return d.length >= 10 ? d.slice(-10) : ''; }
+  function store(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function load(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
+
+  async function unlock(num) {
+    var enc = new TextEncoder();
+    var base = await crypto.subtle.importKey('raw', enc.encode(num), 'PBKDF2', false, ['deriveBits']);
+    var bits = new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: enc.encode(D.salt), iterations: D.iter }, base, 384));
+    var look = hex(bits.slice(0, 16)), w = D.keys[look];
+    if (!w) return null;
+    var wk = await crypto.subtle.importKey('raw', bits.slice(16, 48), 'AES-GCM', false, ['decrypt']);
+    var raw = new Uint8Array(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(w[0]) }, wk, b64(w[1])));
+    var k = await crypto.subtle.importKey('raw', raw.slice(0, 32), 'AES-GCM', false, ['decrypt']);
+    var idx = raw[32] * 256 + raw[33];
+    var all = JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(D.blob[0]) }, k, b64(D.blob[1]))));
+    return { me: all.people[idx], all: all, num: num };
+  }
+
+  function stats(p) {
+    var today = istToday(), tN = toN(today), sN = toN(p.start), dataN = toN(D.asOf);
+    var logged = {}; p.days.forEach(function (d) { logged[d] = 'log'; }); p.manual.forEach(function (d) { logged[d] = 'man'; });
+    var dayNum = Math.max(0, Math.min(100, tN - sN + 1));
+    var total = Object.keys(logged).filter(function (d) { var n = toN(d); return n >= sN && n < sN + 100; }).length;
+    var streak = 0, n = Math.min(tN, dataN); if (!logged[toS(n)]) n--;
+    while (n >= sN && logged[toS(n)]) { streak++; n--; }
+    return { today: today, tN: tN, sN: sN, dataN: dataN, logged: logged, dayNum: dayNum, total: total, streak: streak };
+  }
+
+  function reported() { return load('tl100.reported') || {}; }
+
+  function viewLogin() {
+    return '<span class="x-pill">Participants only</span><h2>See your 100 days</h2>' +
+      '<p>Enter the WhatsApp number you signed up with. Your number never leaves this page, it only unlocks your record.</p>' +
+      '<form id="l100x-login" class="x-card"><label for="l100x-num" class="x-muted">WhatsApp number</label>' +
+      '<div class="x-row" style="margin-top:6px"><input type="tel" id="l100x-num" inputmode="numeric" autocomplete="tel" placeholder="98xxxxxxxx" style="flex:1 1 220px">' +
+      '<button class="x-btn" type="submit"' + (state.busy ? ' disabled' : '') + '>' + (state.busy ? 'Checking…' : 'Show my log') + '</button></div>' +
+      (state.err ? '<div class="x-err">' + esc(state.err) + '</div>' : '') + '</form>';
+  }
+
+  function viewMe() {
+    var p = state.me, s = stats(p), rep = reported()[state.num] || {};
+    var lo = Math.max(s.sN, s.dataN - 14), hi = Math.min(s.dataN - 1, s.tN - 1);
+    var cells = '', i, n, d, cls, title;
+    for (i = 0; i < 100; i++) {
+      n = s.sN + i; d = toS(n); cls = 'x-d'; title = 'Day ' + (i + 1) + ', ' + fmt(d);
+      if (s.logged[d] === 'log') { cls += ' log'; title += ': logged'; }
+      else if (s.logged[d] === 'man') { cls += ' man'; title += ': added by Vipin'; }
+      else if (rep[d]) { cls += ' rep'; title += ': reported, waiting for review'; }
+      else if (n <= hi && n >= lo) { cls += ' miss' + (state.sel[d] ? ' sel' : ''); title += ': not logged. Tap to report'; }
+      else if (n < s.tN && n >= s.dataN) { cls += ' pend'; title += ': not updated yet'; }
+      else if (n < s.tN) { title += ': not logged'; }
+      if (n === s.tN) cls += ' today';
+      cells += '<button type="button" class="' + cls + '" data-d="' + d + '" title="' + esc(title) + '" aria-label="' + esc(title) + '">' + (i + 1) + '</button>';
+    }
+    var selN = Object.keys(state.sel).length;
+    var certLeft = Math.max(0, 80 - s.total);
+    return '<span class="x-pill">Updated ' + fmt(D.asOf) + ', ' + esc(D.asOfTime) + '</span>' +
+      '<h2>Hi ' + esc(p.name.split(' ')[0]) + '</h2>' +
+      '<p class="x-muted">Your 100 days run from ' + fmt(p.start) + ' to ' + fmt(toS(s.sN + 99)) + '. <a href="#" id="l100x-out" style="color:inherit">Not you?</a></p>' +
+      '<div class="x-stats">' +
+      '<div class="x-stat"><b>' + (s.tN < s.sN ? '–' : s.dayNum) + '</b><span>Day of 100</span></div>' +
+      '<div class="x-stat"><b>' + s.total + '</b><span>Days logged</span></div>' +
+      '<div class="x-stat"><b>' + s.streak + '</b><span>Current streak</span></div>' +
+      '<div class="x-stat"><b>' + (certLeft ? certLeft : '✓') + '</b><span>' + (certLeft ? 'More days for the certificate' : 'Certificate earned') + '</span></div></div>' +
+      '<div class="x-grid" id="l100x-grid">' + cells + '</div>' +
+      '<div class="x-legend"><span><i style="background:#6C9429"></i>Logged</span><span><i style="background:#B9CC8E"></i>Added by Vipin</span><span><i style="background:#fff;border:1.5px dashed #B5532F"></i>Not logged, tap to report</span><span><i style="background:#F3D9C9;border-color:#B5532F"></i>Reported</span><span><i style="background:#F4F1E8;border-style:dotted"></i>Not updated yet</span></div>' +
+      '<h3>A day missing?</h3>' +
+      '<p>If you did a day but it shows as not logged, tap it on the grid and send it here. Vipin reviews these once a week, so no need to message him. You can report days from the last two weeks. Days after ' + fmt(D.asOf) + ' appear at the next update.</p>' +
+      '<div class="x-card"><div class="x-muted" style="margin-bottom:8px">' + (selN ? 'Selected: ' + Object.keys(state.sel).sort().map(fmt).join(', ') : 'No days selected yet. Tap a dashed day above.') + '</div>' +
+      '<textarea id="l100x-note" rows="2" placeholder="Anything Vipin should know (optional)"></textarea>' +
+      '<div class="x-row" style="margin-top:10px"><button class="x-btn olive" type="button" id="l100x-send"' + (!selN || state.busy ? ' disabled' : '') + '>' + (state.busy ? 'Sending…' : 'Report ' + (selN || '') + ' ' + (selN === 1 ? 'day' : 'days')) + '</button></div>' +
+      (state.err ? '<div class="x-err">' + esc(state.err) + '</div>' : '') +
+      (state.sent ? '<div class="x-ok">' + esc(state.sent) + '</div>' : '') + '</div>' +
+      '<p class="x-muted" style="margin-top:18px">Please keep logging every day at <a href="#check-in" style="color:inherit">Check in</a>. Logged days are what count for the certificate, the draws and the podcast spots.</p>';
+  }
+
+  function viewEveryone() {
+    if (!state.me) return '<h2>Everyone</h2><p>The group board is for participants. Unlock it with your WhatsApp number on the My progress tab.</p><button class="x-btn" type="button" data-go="progress">Go to My progress</button>';
+    var list = state.all.people.map(function (p, i) { var s = stats(p); return { i: i, name: p.name, day: s.dayNum, tot: s.total, st: s.streak, up: s.tN < s.sN }; });
+    list.sort(function (a, b) { return b.tot - a.tot || b.st - a.st || a.name.localeCompare(b.name); });
+    var mine = state.all.people.indexOf(state.me);
+    return '<h2>Everyone</h2><p class="x-muted">' + list.length + ' people in The Last 100. Days logged so far, updated ' + fmt(D.asOf) + '.</p>' +
+      '<div class="x-list">' + list.map(function (r) {
+        return '<div class="x-li' + (r.i === mine ? ' me' : '') + '"><div>' + esc(r.name) + (r.i === mine ? ' (you)' : '') + '<br><small>' + (r.up ? 'Starting soon' : 'Day ' + r.day + ' · streak ' + r.st) + '</small></div>' +
+          '<div class="x-bar"><i style="width:' + Math.round(100 * r.tot / Math.max(1, r.day)) + '%"></i></div><div><b>' + r.tot + '</b> <small>logged</small></div></div>';
+      }).join('') + '</div>';
+  }
+
+  function viewInvite() {
+    var open = istToday() <= CLOSE_DAY;
+    if (!open) return '<span class="x-pill">Registrations closed</span><h2>See you in the next one</h2><p>Registrations for The Last 100 are now closed. Thank you to everyone who joined and to everyone who spread the word. A new challenge is coming, so stay close to Find Your Ultra to hear about it first.</p>' +
+      '<div class="x-row"><a class="x-btn" href="https://www.instagram.com/find_your_ultra" target="_blank" rel="noopener">Instagram</a><a class="x-btn ghost" href="https://www.youtube.com/@FindYourUltra" target="_blank" rel="noopener">YouTube</a></div>';
+    var msg = "I'm doing The Last 100, a free 100-day challenge from Find Your Ultra. Every day: move for 20 minutes, 5 minutes of stillness, one healthy meal, and drop one thing you want out of your life. Your 100 days start the day you join. Sign-ups close on 20 October. Join me: " + SITE;
+    return '<span class="x-pill">Open till 20 October</span><h2>Bring someone along</h2><p>The Last 100 is better with people you know. Send this to a friend or family member. Sign-ups close on 20 October.</p>' +
+      '<div class="x-card"><p style="margin:0 0 14px;font-size:15px">' + esc(msg) + '</p><div class="x-row">' +
+      '<a class="x-btn olive" href="https://wa.me/?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Share on WhatsApp</a>' +
+      (navigator.share ? '<button class="x-btn" type="button" id="l100x-share">Share…</button>' : '') +
+      '<button class="x-btn ghost" type="button" id="l100x-copy">Copy message</button></div>' +
+      (state.sent ? '<div class="x-ok">' + esc(state.sent) + '</div>' : '') + '</div>';
+  }
+
+  function render() {
+    root.querySelectorAll('.x-tab').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.t === state.tab); });
+    body.innerHTML = state.tab === 'invite' ? viewInvite() : state.tab === 'everyone' ? viewEveryone() : (state.me ? viewMe() : viewLogin());
+    var f = document.getElementById('l100x-login');
+    if (f) {
+      var inp = document.getElementById('l100x-num');
+      f.onsubmit = function (e) { e.preventDefault(); tryUnlock(inp.value, true); };
+    }
+  }
+
+  async function tryUnlock(v, loud) {
+    var num = phone10(v);
+    if (!num) { if (loud) { state.err = 'Please enter your 10-digit WhatsApp number.'; render(); } return; }
+    state.busy = true; state.err = ''; if (loud) render();
+    try {
+      var r = await unlock(num);
+      if (r) { state.me = r.me; state.all = r.all; state.num = num; store(KEY, num); }
+      else if (loud) state.err = "We couldn't find that number. Use the number you signed up with. If it still doesn't work, message Vipin on WhatsApp.";
+    } catch (e) { if (loud) state.err = "Something went wrong on this browser. Try again, or open the page in Chrome or Safari."; }
+    state.busy = false; render();
+  }
+
+  function sendReport() {
+    var days = Object.keys(state.sel).sort();
+    if (!days.length) return;
+    state.busy = true; state.err = ''; state.sent = ''; render();
+    var note = (document.getElementById('l100x-note') || {}).value || '';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ access_key: D.formKey, subject: 'The Last 100: missing day report, ' + state.me.name, from_name: 'The Last 100 progress page',
+        Name: state.me.name, Whatsapp: state.num, 'Days reported': days.join(', '), 'Days (readable)': days.map(fmt).join(', '), Note: note, Start: state.me.start, 'Board updated': D.asOf })
+    }).then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
+      .then(function (d) {
+        if (!d || d.success === false) throw new Error();
+        var all = reported(), mine = all[state.num] || {}; days.forEach(function (x) { mine[x] = 1; }); all[state.num] = mine; store('tl100.reported', all);
+        state.sel = {}; state.sent = 'Sent. Vipin will review it this week. Once approved, the day turns green at the next update.';
+      })
+      .catch(function () { state.err = "That didn't send. Check your connection and try again."; })
+      .then(function () { state.busy = false; render(); });
+  }
+
+  body.addEventListener('click', function (e) {
+    var b = e.target.closest('button, a');
+    if (!b) return;
+    if (b.id === 'l100x-out') { e.preventDefault(); state.me = null; state.all = null; state.sel = {}; store(KEY, null); render(); return; }
+    if (b.dataset.go) { state.tab = b.dataset.go; render(); return; }
+    if (b.classList.contains('miss')) { var d = b.dataset.d; state.sent = ''; if (state.sel[d]) delete state.sel[d]; else state.sel[d] = 1; var note = (document.getElementById('l100x-note') || {}).value; render(); if (note) document.getElementById('l100x-note').value = note; return; }
+    if (b.id === 'l100x-send') { sendReport(); return; }
+    if (b.id === 'l100x-copy' || b.id === 'l100x-share') {
+      var msg = body.querySelector('.x-card p').textContent;
+      if (b.id === 'l100x-share') { navigator.share({ text: msg }).catch(function () {}); return; }
+      (navigator.clipboard ? navigator.clipboard.writeText(msg) : Promise.reject()).then(function () { state.sent = 'Copied. Paste it anywhere.'; render(); }, function () { state.sent = 'Copy didn\'t work here. Press and hold the message to copy it.'; render(); });
+    }
+  });
+  root.querySelectorAll('.x-tab').forEach(function (b) { b.onclick = function () { state.tab = b.dataset.t; state.sent = ''; state.err = ''; history.replaceState(null, '', '#' + (b.dataset.t === 'invite' ? 'invite' : 'progress')); render(); }; });
+
+  var lastScroll = 0;
+  function openFromHash() {
+    var h = location.hash;
+    if (h === '#progress' || h === '#invite' || h === '#everyone') {
+      if (root.hidden) lastScroll = window.pageYOffset;
+      state.tab = h.slice(1); root.hidden = false; document.documentElement.style.overflow = 'hidden'; render(); root.scrollTop = 0;
+    } else if (!root.hidden) { root.hidden = true; document.documentElement.style.overflow = ''; }
+  }
+  document.getElementById('l100x-close').onclick = function () { history.replaceState(null, '', location.pathname + location.search); root.hidden = true; document.documentElement.style.overflow = ''; window.scrollTo(0, lastScroll); };
+  window.addEventListener('hashchange', openFromHash);
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#check-in"]');
+    if (a && !root.hidden) { root.hidden = true; document.documentElement.style.overflow = ''; }
+  });
+
+  var saved = load(KEY), ck = load('tl100.checkin');
+  var guess = saved || (ck && phone10(ck.id));
+  if (guess) tryUnlock(guess, false);
+  openFromHash();
+})();
+</script>

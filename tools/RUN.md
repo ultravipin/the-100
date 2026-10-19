@@ -2,7 +2,7 @@
 
 Instructions for the scheduled Claude run that keeps the progress board on findyourultra.in current. Quiet maintenance job: do these steps, then finish with one line saying how many people were processed and the "updated" time of the data. Do not message any participant and do not change anything not listed here.
 
-How the pieces fit: a separate scheduled job (in Vipin's Claude chats) refreshes his private ADMIN dashboard at 9:52am, 1:52pm and 9:52pm India time. This run starts a few minutes later, reads the data already built into that dashboard, and puts an encrypted copy on the website. This run never publishes or changes the ADMIN dashboard.
+How the pieces fit: a separate scheduled job (in Vipin's Claude chats) refreshes his private ADMIN dashboard (importing new sign-ups from email first) at 9:55am, 1:55pm, 9:55pm and 11:55pm India time. This run starts a few minutes later, reads the data already built into that dashboard, and puts an encrypted copy on the website. This run never publishes or changes the ADMIN dashboard.
 
 - ADMIN dashboard (private, read only for this run): https://claude.ai/artifact/5xhBamHJHadhKEpudfdkg7
 - WEBSITE: `index.html` in this repository (GitHub Pages serves the `main` branch)

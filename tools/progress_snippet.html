@@ -119,7 +119,7 @@
 (function () {
   var D = JSON.parse(document.getElementById('l100x-data').textContent);
   var root = document.getElementById('l100x'), body = document.getElementById('l100x-body');
-  var UPD = 'This board updates four times a day: around 10am, 2pm, 10pm and midnight. A check-in you just made shows after the next update.';
+  var UPD = 'This board updates three times a day: around 10am, 2pm and 10pm. A check-in you just made will show after the next update.';
   var KEY = 'tl100.progress', CLOSE_DAY = '2026-10-20', SITE = 'https://findyourultra.in';
   var state = { tab: 'progress', me: null, num: '', sel: {}, err: '', busy: false, sent: '' };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -235,7 +235,7 @@
       '<h3>Your 100 days</h3><div class="x-grid" id="l100x-grid">' + cells + '</div>' +
       '<div class="x-legend"><span><i style="background:#6C9429"></i>Logged</span><span><i style="background:#B9CC8E"></i>Added by us</span><span><i style="background:#fff;border:1.5px dashed #B5532F"></i>Not logged, tap to report</span><span><i style="background:#F3D9C9;border-color:#B5532F"></i>Reported</span><span><i style="background:#F4F1E8;border-style:dotted"></i>Not updated yet, or still open to log</span></div>' +
       '<h3>A day missing?</h3>' +
-      '<p>Just checked in? Give it until the next update (10am, 2pm, 10pm or midnight) before reporting. Missed logging yesterday? You can still log it yourself in the <a href="#check-in" style="color:inherit">check-in form</a>: pick Yesterday.</p>' +
+      '<p>Just checked in? Give it until the next update (10am, 2pm or 10pm) before reporting. Missed logging yesterday? You can still log it yourself in the <a href="#check-in" style="color:inherit">check-in form</a>: pick Yesterday.</p>' +
       '<p>Report a day here only if you did it but never sent the check-in for it. Tap it on the grid and send it. We review these once a week, so there\'s no need to message us. You can report days from the last two weeks.</p>' +
       '<div class="x-card"><div class="x-muted" style="margin-bottom:8px">' + (selN ? 'Selected: ' + Object.keys(state.sel).sort().map(fmt).join(', ') : 'No days selected yet. Tap a dashed day above.') + '</div>' +
       '<textarea id="l100x-note" rows="2" placeholder="Anything we should know (optional)"></textarea>' +

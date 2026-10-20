@@ -202,13 +202,13 @@
     rows.push([!started || perfect ? 'ok' : 'off', !started || perfect ? '100' : '!', 'Prize draw', drawTxt]);
     rows.push([!started || perfect ? 'ok' : 'off', !started || perfect ? '100' : '!', 'Podcast spot draw',
       !started || perfect ? 'Three people who complete all 100 days will be picked to come on Find Your Ultra. ' + (started ? s.toGo + ' days to go.' : '') : 'Also needs all 100 days logged.']);
-    var help = (!perfect && started) ? '<p class="x-muted" style="margin-top:10px">Did those days but forgot to log? Report them below and they will be added once checked.' + (open ? ' Or, if you had a break, you can restart your 100 days any day before 20 October. Just message us.' : '') + '</p>' : '';
+    var help = (!perfect && started) ? '<p class="x-muted" style="margin-top:10px">Did those days but forgot to log? Report them below and they will be added once checked. You can only report days from the last 7 days.' + (open ? ' Or, if you had a break, you can restart your 100 days any day before 20 October. Just message us.' : '') + '</p>' : '';
     return '<h3>Your milestones</h3><div class="x-ms">' + rows.map(function (r) { return '<div class="x-m ' + r[0] + '"><i>' + r[1] + '</i><div><b>' + esc(r[2]) + '</b><span>' + esc(r[3]) + '</span></div></div>'; }).join('') + '</div>' + help;
   }
 
   function viewMe() {
     var p = state.me, s = stats(p), rep = reported()[state.num] || {};
-    var lo = Math.max(s.sN, s.dataN - 14), hi = Math.min(s.dataN - 2, s.tN - 1);
+    var lo = Math.max(s.sN, s.tN - 7), hi = Math.min(s.dataN - 2, s.tN - 1);
     var cells = '', i, n, d, cls, title;
     for (i = 0; i < 100; i++) {
       n = s.sN + i; d = toS(n); cls = 'x-d'; title = 'Day ' + (i + 1) + ', ' + fmt(d);
@@ -236,7 +236,8 @@
       '<div class="x-legend"><span><i style="background:#6C9429"></i>Logged</span><span><i style="background:#B9CC8E"></i>Added by us</span><span><i style="background:#fff;border:1.5px dashed #B5532F"></i>Not logged, tap to report</span><span><i style="background:#F3D9C9;border-color:#B5532F"></i>Reported</span><span><i style="background:#F4F1E8;border-style:dotted"></i>Not updated yet, or still open to log</span></div>' +
       '<h3>A day missing?</h3>' +
       '<p>Just checked in? Give it until the next update (10am, 2pm or 10pm) before reporting. Missed logging yesterday? You can still log it yourself in the <a href="#check-in" style="color:inherit">check-in form</a>: pick Yesterday.</p>' +
-      '<p>Report a day here only if you did it but never sent the check-in for it. Tap it on the grid and send it. We review these once a week, so there\'s no need to message us. You can report days from the last two weeks.</p>' +
+      '<p>Report a day here only if you did it but never sent the check-in for it. Tap it on the grid and send it. We review these once a week, so there\'s no need to message us.</p>' +
+      '<p><b>You can only report a day within 7 days of it.</b> Today that means ' + fmt(toS(s.tN - 7)) + ' or later. Anything older than 7 days can\'t be added, so please log every day.</p>' +
       '<div class="x-card"><div class="x-muted" style="margin-bottom:8px">' + (selN ? 'Selected: ' + Object.keys(state.sel).sort().map(fmt).join(', ') : 'No days selected yet. Tap a dashed day above.') + '</div>' +
       '<textarea id="l100x-note" rows="2" placeholder="Anything we should know (optional)"></textarea>' +
       '<div class="x-row" style="margin-top:10px"><button class="x-btn olive" type="button" id="l100x-send"' + (!selN || state.busy ? ' disabled' : '') + '>' + (state.busy ? 'Sending…' : 'Report ' + (selN || '') + ' ' + (selN === 1 ? 'day' : 'days')) + '</button></div>' +

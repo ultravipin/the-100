@@ -119,7 +119,7 @@
 (function () {
   var D = JSON.parse(document.getElementById('l100x-data').textContent);
   var root = document.getElementById('l100x'), body = document.getElementById('l100x-body');
-  var UPD = 'This board updates three times a day: around 10am, 2pm and 10pm. A check-in you just made will show after the next update.';
+  var UPD = 'This board updates four times a day: around 10am, 2pm, 10pm and midnight. A check-in you just made shows after the next update.';
   var KEY = 'tl100.progress', CLOSE_DAY = '2026-10-20', SITE = 'https://findyourultra.in';
   var state = { tab: 'progress', me: null, num: '', sel: {}, err: '', busy: false, sent: '' };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -150,9 +150,10 @@
     var logged = {}; p.days.forEach(function (d) { logged[d] = 'log'; }); p.manual.forEach(function (d) { logged[d] = 'man'; });
     var dayNum = Math.max(0, Math.min(100, tN - sN + 1));
     var total = Object.keys(logged).filter(function (d) { var n = toN(d); return n >= sN && n < sN + 100; }).length;
-    var streak = 0, n = Math.min(tN, dataN); if (!logged[toS(n)]) n--;
+    var streak = 0, n = Math.min(tN, dataN);
+    while (n >= sN && n >= dataN - 1 && !logged[toS(n)]) n--;
     while (n >= sN && logged[toS(n)]) { streak++; n--; }
-    var lastChecked = Math.min(tN - 1, dataN - 1), missed = 0;
+    var lastChecked = Math.min(tN - 1, dataN - 2), missed = 0;
     for (n = sN; n <= lastChecked && n < sN + 100; n++) if (!logged[toS(n)]) missed++;
     var toGo = Math.max(0, Math.min(100, sN + 100 - tN));
     return { today: today, tN: tN, sN: sN, dataN: dataN, logged: logged, dayNum: dayNum, total: total, streak: streak, missed: missed, toGo: toGo };
@@ -207,7 +208,7 @@
 
   function viewMe() {
     var p = state.me, s = stats(p), rep = reported()[state.num] || {};
-    var lo = Math.max(s.sN, s.dataN - 14), hi = Math.min(s.dataN - 1, s.tN - 1);
+    var lo = Math.max(s.sN, s.dataN - 14), hi = Math.min(s.dataN - 2, s.tN - 1);
     var cells = '', i, n, d, cls, title;
     for (i = 0; i < 100; i++) {
       n = s.sN + i; d = toS(n); cls = 'x-d'; title = 'Day ' + (i + 1) + ', ' + fmt(d);
@@ -215,7 +216,8 @@
       else if (s.logged[d] === 'man') { cls += ' man'; title += ': added by us'; }
       else if (rep[d]) { cls += ' rep'; title += ': reported, waiting for review'; }
       else if (n <= hi && n >= lo) { cls += ' miss' + (state.sel[d] ? ' sel' : ''); title += ': not logged. Tap to report'; }
-      else if (n < s.tN && n >= s.dataN) { cls += ' pend'; title += ': not updated yet'; }
+      else if (n < s.tN && n === s.tN - 1 && n >= s.dataN - 1) { cls += ' pend'; title += ': not in yet. If you haven\'t checked in, log it now in the check-in form and pick Yesterday'; }
+      else if (n < s.tN && n >= s.dataN - 1) { cls += ' pend'; title += ': not updated yet'; }
       else if (n < s.tN) { title += ': not logged'; }
       if (n === s.tN) cls += ' today';
       cells += '<button type="button" class="' + cls + '" data-d="' + d + '" title="' + esc(title) + '" aria-label="' + esc(title) + '">' + (i + 1) + '</button>';
@@ -231,9 +233,10 @@
       '<div class="x-stat"><b>' + s.toGo + '</b><span>Days to go</span></div></div>' +
       milestones(s) +
       '<h3>Your 100 days</h3><div class="x-grid" id="l100x-grid">' + cells + '</div>' +
-      '<div class="x-legend"><span><i style="background:#6C9429"></i>Logged</span><span><i style="background:#B9CC8E"></i>Added by us</span><span><i style="background:#fff;border:1.5px dashed #B5532F"></i>Not logged, tap to report</span><span><i style="background:#F3D9C9;border-color:#B5532F"></i>Reported</span><span><i style="background:#F4F1E8;border-style:dotted"></i>Not updated yet</span></div>' +
+      '<div class="x-legend"><span><i style="background:#6C9429"></i>Logged</span><span><i style="background:#B9CC8E"></i>Added by us</span><span><i style="background:#fff;border:1.5px dashed #B5532F"></i>Not logged, tap to report</span><span><i style="background:#F3D9C9;border-color:#B5532F"></i>Reported</span><span><i style="background:#F4F1E8;border-style:dotted"></i>Not updated yet, or still open to log</span></div>' +
       '<h3>A day missing?</h3>' +
-      '<p>If you did a day but it shows as not logged, tap it on the grid and send it here. We review these once a week, so there\'s no need to message us. You can report days from the last two weeks. Check-ins after the last update show up at the next one (10am, 2pm or 10pm).</p>' +
+      '<p>Just checked in? Give it until the next update (10am, 2pm, 10pm or midnight) before reporting. Missed logging yesterday? You can still log it yourself in the <a href="#check-in" style="color:inherit">check-in form</a>: pick Yesterday.</p>' +
+      '<p>Report a day here only if you did it but never sent the check-in for it. Tap it on the grid and send it. We review these once a week, so there\'s no need to message us. You can report days from the last two weeks.</p>' +
       '<div class="x-card"><div class="x-muted" style="margin-bottom:8px">' + (selN ? 'Selected: ' + Object.keys(state.sel).sort().map(fmt).join(', ') : 'No days selected yet. Tap a dashed day above.') + '</div>' +
       '<textarea id="l100x-note" rows="2" placeholder="Anything we should know (optional)"></textarea>' +
       '<div class="x-row" style="margin-top:10px"><button class="x-btn olive" type="button" id="l100x-send"' + (!selN || state.busy ? ' disabled' : '') + '>' + (state.busy ? 'Sending…' : 'Report ' + (selN || '') + ' ' + (selN === 1 ? 'day' : 'days')) + '</button></div>' +

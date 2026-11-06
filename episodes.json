@@ -1,6 +1,15 @@
 {
   "latest": [
     {
+      "show": true,
+      "label": "New episode · EP 112, Part 2",
+      "title": "Amar Singh Devanda",
+      "blurb": "Part two with India's fastest ultrarunner, and this one is all about what actually decides a 24 hour race. How he trained his gut from 30 grams of carbs an hour to 80, a 210 km peak week, one pair of shoes for all 24 hours, and how he stays present when the body starts breaking down.",
+      "youtube": "https://youtu.be/_ywN3zAbNJs",
+      "spotify": "https://open.spotify.com/episode/1tbRb70xPy5ncQlFc8EMqv",
+      "more": { "label": "Start with Part 1", "url": "https://youtu.be/SoAUI7AX0Fs" }
+    },
+    {
       "show": false,
       "label": "New episode · EP 113, Part 1",
       "title": "Badri Rao",

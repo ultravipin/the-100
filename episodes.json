@@ -2,20 +2,23 @@
   "latest": [
     {
       "show": true,
+      "label": "New episode · EP 113, Part 1",
+      "title": "Badri Rao",
+      "blurb": "Badri has spent 26 years helping people move without pain, and his message is simple: your pain is not your age, and it is not something you have to live with. Why his very first patient was sent home before treatment began, how a 65-year-old with a replacement-level knee went on to climb 12 Himalayan peaks, and why the most boring advice in health, drink water, could be what saves your ACL.",
+      "youtube": "https://youtu.be/b1jU9h3Mk-c",
+      "spotify": "https://open.spotify.com/episode/4ofSltEZS9LkZpmoP0bv8I"
+    },
+    {
+      "show": false,
       "label": "New episode · EP 112, Part 2",
       "title": "Amar Singh Devanda",
       "blurb": "Part two with India's fastest ultrarunner, and this one is all about what actually decides a 24 hour race. How he trained his gut from 30 grams of carbs an hour to 80, a 210 km peak week, one pair of shoes for all 24 hours, and how he stays present when the body starts breaking down.",
       "youtube": "https://youtu.be/_ywN3zAbNJs",
       "spotify": "https://open.spotify.com/episode/1tbRb70xPy5ncQlFc8EMqv",
-      "more": { "label": "Start with Part 1", "url": "https://youtu.be/SoAUI7AX0Fs" }
-    },
-    {
-      "show": false,
-      "label": "New episode · EP 113, Part 1",
-      "title": "Badri Rao",
-      "blurb": "Write two or three lines here about the episode.",
-      "youtube": "https://youtu.be/PASTE-YOUTUBE-LINK",
-      "spotify": "https://open.spotify.com/episode/PASTE-SPOTIFY-LINK"
+      "more": {
+        "label": "Start with Part 1",
+        "url": "https://youtu.be/SoAUI7AX0Fs"
+      }
     },
     {
       "show": false,

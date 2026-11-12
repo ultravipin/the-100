@@ -371,6 +371,21 @@
   /* ---------- The Sunday Long Run newsletter ---------- */
   var NL = 'tl100.sundaylongrun', pop = document.getElementById('l100-pop');
   function nlState() { return load(NL) || {}; }
+  /* The popup must never get in the way of a Last 100 check-in: people coming to log their day
+     were filling it in by mistake, again and again. So it stays away from participants, from
+     anyone who touches the check-in or progress pages on this visit, and while the check-in or
+     the newsletter section is on screen. */
+  var quiet = false, QUIET_HASH = /^#(check-in|progress|invite|together)$/;
+  function isParticipant() { return !!(load(KEY) || load('tl100.checkin')); }
+  function onScreen(id) { var el = document.getElementById(id); if (!el) return false; var r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < window.innerHeight; }
+  if (QUIET_HASH.test(location.hash)) quiet = true;
+  window.addEventListener('hashchange', function () { if (QUIET_HASH.test(location.hash)) quiet = true; });
+  ['focusin', 'click', 'touchstart'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) {
+      var t = e.target;
+      if (t && t.closest && (t.closest('#check-in') || t.closest('#l100x') || t.closest('a[href="#check-in"], a[href="#progress"]'))) quiet = true;
+    }, { passive: true, capture: true });
+  });
   document.addEventListener('submit', function (e) {
     var f = e.target.closest('.l100-nl-form');
     if (!f) return;
@@ -378,6 +393,12 @@
     var name = f.elements.name.value.trim(), email = f.elements.email.value.trim(), msg = f.querySelector('.l100-nl-msg'), btn = f.querySelector('button[type=submit]');
     if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = 'Please add your first name and a valid email.'; return; }
     if (f.elements.botcheck && f.elements.botcheck.checked) return;
+    var known = nlState().emails || [];
+    if (known.indexOf(email.toLowerCase()) > -1) {
+      f.innerHTML = '<div class="l100-nl-msg" style="font-size:17px">You\'re already on the list, ' + esc(name) + '. No need to sign up again.</div>';
+      if (f.dataset.src === 'popup') setTimeout(function () { pop.hidden = true; }, 2600);
+      return;
+    }
     btn.disabled = true; msg.textContent = 'Signing you up…';
     fetch('https://api.web3forms.com/submit', {
       method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -386,7 +407,8 @@
     }).then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
       .then(function (d) {
         if (!d || d.success === false) throw new Error();
-        store(NL, { subscribed: true, at: Date.now() });
+        var s1 = nlState(); s1.subscribed = true; s1.at = Date.now();
+        s1.emails = (s1.emails || []).concat([email.toLowerCase()]); store(NL, s1);
         f.innerHTML = '<div class="l100-nl-msg" style="font-size:17px">You\'re in, ' + esc(name) + '. The first Sunday Long Run lands in your inbox soon.</div>';
         if (f.dataset.src === 'popup') setTimeout(function () { pop.hidden = true; }, 2600);
       })
@@ -398,6 +420,7 @@
   function maybePop() {
     var s = nlState();
     if (s.subscribed || (s.dismissed && Date.now() - s.dismissed < 14 * 864e5)) return;
+    if (quiet || isParticipant() || onScreen('check-in') || onScreen('newsletter')) return;
     if (!root.hidden || !pop.hidden) return;
     var inForm = document.activeElement && /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
     if (inForm) return;

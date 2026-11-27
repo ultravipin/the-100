@@ -2,6 +2,18 @@
   "latest": [
     {
       "show": true,
+      "label": "New episode · EP 114, Badri Part 2",
+      "title": "Badri Rao, Part 2",
+      "blurb": "Part two with Badri gets practical. Why he says you shouldn't stretch hard after a run, why new runners break down in week four, why you run with your arms and not your legs, the 10-second exhale drill, and why a dental checkup belongs in your fitness plan. Plus the national-level cyclist whose saddle problem turned out to be in her brain.",
+      "youtube": "https://youtu.be/iUAy3w5O-mk",
+      "spotify": "https://open.spotify.com/episode/6cXHehhl9ddyFWlczpsi8Y",
+      "more": {
+        "label": "Start with Part 1",
+        "url": "https://youtu.be/b1jU9h3Mk-c"
+      }
+    },
+    {
+      "show": false,
       "label": "New episode · EP 113, Part 1",
       "title": "Badri Rao",
       "blurb": "Badri has spent 26 years helping people move without pain, and his message is simple: your pain is not your age, and it is not something you have to live with. Why his very first patient was sent home before treatment began, how a 65-year-old with a replacement-level knee went on to climb 12 Himalayan peaks, and why the most boring advice in health, drink water, could be what saves your ACL.",
@@ -19,14 +31,6 @@
         "label": "Start with Part 1",
         "url": "https://youtu.be/SoAUI7AX0Fs"
       }
-    },
-    {
-      "show": false,
-      "label": "New episode · EP 113, Part 2",
-      "title": "Badri Rao, Part 2",
-      "blurb": "Write two or three lines here about the episode.",
-      "youtube": "https://youtu.be/PASTE-YOUTUBE-LINK",
-      "spotify": "https://open.spotify.com/episode/PASTE-SPOTIFY-LINK"
     }
   ]
 }
